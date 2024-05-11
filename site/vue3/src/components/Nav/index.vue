@@ -28,7 +28,7 @@ onMounted(() => {});
       <img :src="VueSvg" />
     </a-menu-item>
     <a-menu-item key="/">Home</a-menu-item>
-    <a-menu-item key="/my">my</a-menu-item>
+    <a-menu-item key="/my">My</a-menu-item>
   </a-menu>
 </template>
 

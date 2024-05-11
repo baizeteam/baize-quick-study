@@ -8,7 +8,9 @@ function App() {
     <>
       <BrowserRouter>
         <Nav />
-        <BaseRouter />
+        <div style={{ padding: "24px" }}>
+          <BaseRouter />
+        </div>
       </BrowserRouter>
     </>
   );

@@ -2,12 +2,12 @@
 
 <template>
   <div class="home">
-    <div>home</div>
+    <div>Home</div>
   </div>
 </template>
 
 <style scoped lang="less">
 .home {
-  color: @primary-color;
+  // color: @primary-color;
 }
 </style>

@@ -1,7 +1,9 @@
 <template>
   <a-config-provider :locale="enUS">
     <Nav />
-    <router-view />
+    <div :style="{ padding: '24px' }">
+      <router-view />
+    </div>
   </a-config-provider>
 </template>
 
