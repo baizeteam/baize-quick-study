@@ -19,7 +19,7 @@ export default defineConfig({
         manualChunks: {
           reactBase: ["react", "react-dom", "react-router-dom"],
           mobx: ["mobx", "mobx-react"],
-          arco: ["@arco-design/web-vue"],
+          arco: ["@arco-design/web-react"],
         },
       },
     },
