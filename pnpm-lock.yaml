@@ -42,13 +42,13 @@ importers:
         version: 18.2.22
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.2.0
-        version: 7.2.0(@typescript-eslint/parser@7.2.0)(eslint@8.57.0)(typescript@5.2.2)
+        version: 7.2.0(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.2.2))(eslint@8.57.0)(typescript@5.2.2)
       '@typescript-eslint/parser':
         specifier: ^7.2.0
         version: 7.2.0(eslint@8.57.0)(typescript@5.2.2)
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.0)
+        version: 4.2.1(vite@5.2.0(@types/node@20.12.11)(less@4.2.0))
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -69,7 +69,13 @@ importers:
     dependencies:
       '@arco-design/web-react':
         specifier: ^2.62.0
-        version: 2.62.0(@types/react@18.2.66)(react-dom@18.2.0)(react@18.2.0)
+        version: 2.62.0(@types/react@18.2.66)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      mobx:
+        specifier: ^6.12.3
+        version: 6.12.3
+      mobx-react:
+        specifier: ^9.1.1
+        version: 9.1.1(mobx@6.12.3)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -78,7 +84,7 @@ importers:
         version: 18.2.0(react@18.2.0)
       react-router-dom:
         specifier: ^6.23.1
-        version: 6.23.1(react-dom@18.2.0)(react@18.2.0)
+        version: 6.23.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@types/node':
         specifier: ^20.12.11
@@ -91,13 +97,13 @@ importers:
         version: 18.2.22
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.2.0
-        version: 7.2.0(@typescript-eslint/parser@7.2.0)(eslint@8.57.0)(typescript@5.2.2)
+        version: 7.2.0(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.2.2))(eslint@8.57.0)(typescript@5.2.2)
       '@typescript-eslint/parser':
         specifier: ^7.2.0
         version: 7.2.0(eslint@8.57.0)(typescript@5.2.2)
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.0)
+        version: 4.2.1(vite@5.2.0(@types/node@20.12.11)(less@4.2.0))
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -118,23 +124,23 @@ importers:
     dependencies:
       pinia:
         specifier: ^2.1.7
-        version: 2.1.7(typescript@5.2.2)(vue@3.4.21)
+        version: 2.1.7(typescript@5.2.2)(vue@3.4.21(typescript@5.2.2))
       vue:
         specifier: ^3.4.21
         version: 3.4.21(typescript@5.2.2)
       vue-router:
         specifier: ^4.3.2
-        version: 4.3.2(vue@3.4.21)
+        version: 4.3.2(vue@3.4.21(typescript@5.2.2))
     devDependencies:
       '@arco-design/web-vue':
         specifier: ^2.55.1
-        version: 2.55.1(vue@3.4.21)
+        version: 2.55.1(vue@3.4.21(typescript@5.2.2))
       '@types/node':
         specifier: ^20.12.11
         version: 20.12.11
       '@vitejs/plugin-vue':
         specifier: ^5.0.4
-        version: 5.0.4(vite@5.2.0)(vue@3.4.21)
+        version: 5.0.4(vite@5.2.0(@types/node@20.12.11)(less@4.2.0))(vue@3.4.21(typescript@5.2.2))
       less:
         specifier: ^4.2.0
         version: 4.2.0
@@ -146,10 +152,10 @@ importers:
         version: 5.2.2
       unplugin-auto-import:
         specifier: ^0.17.5
-        version: 0.17.5
+        version: 0.17.5(rollup@4.17.2)
       unplugin-vue-components:
         specifier: ^0.27.0
-        version: 0.27.0(vue@3.4.21)
+        version: 0.27.0(@babel/parser@7.24.5)(rollup@4.17.2)(vue@3.4.21(typescript@5.2.2))
       vite:
         specifier: ^5.2.0
         version: 5.2.0(@types/node@20.12.11)(less@4.2.0)
@@ -1464,6 +1470,35 @@ packages:
   mlly@1.7.0:
     resolution: {integrity: sha512-U9SDaXGEREBYQgfejV97coK0UL1r+qnF2SyO9A3qcI8MzKnsIFKHNVEkrDyNncQTKQQumsasmeq84eNMdBfsNQ==}
 
+  mobx-react-lite@4.0.7:
+    resolution: {integrity: sha512-RjwdseshK9Mg8On5tyJZHtGD+J78ZnCnRaxeQDSiciKVQDUbfZcXhmld0VMxAwvcTnPEHZySGGewm467Fcpreg==}
+    peerDependencies:
+      mobx: ^6.9.0
+      react: ^16.8.0 || ^17 || ^18
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+
+  mobx-react@9.1.1:
+    resolution: {integrity: sha512-gVV7AdSrAAxqXOJ2bAbGa5TkPqvITSzaPiiEkzpW4rRsMhSec7C2NBCJYILADHKp2tzOAIETGRsIY0UaCV5aEw==}
+    peerDependencies:
+      mobx: ^6.9.0
+      react: ^16.8.0 || ^17 || ^18
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+
+  mobx@6.12.3:
+    resolution: {integrity: sha512-c8NKkO4R2lShkSXZ2Ongj1ycjugjzFFo/UswHBnS62y07DMcTc9Rvo03/3nRyszIvwPNljlkd4S828zIBv/piw==}
+
   ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
 
@@ -2002,6 +2037,11 @@ packages:
       '@types/react':
         optional: true
 
+  use-sync-external-store@1.2.2:
+    resolution: {integrity: sha512-PElTlVMwpblvbNqQ82d2n6RjStvdSoNe9FG28kNfz3WiXilJm4DdNkEzRhCZuIDwY8U08WVihhGR5iRqAwfDiw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+
   validate-npm-package-license@3.0.4:
     resolution: {integrity: sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew==}
 
@@ -2116,7 +2156,7 @@ snapshots:
     dependencies:
       color: 3.2.1
 
-  '@arco-design/web-react@2.62.0(@types/react@18.2.66)(react-dom@18.2.0)(react@18.2.0)':
+  '@arco-design/web-react@2.62.0(@types/react@18.2.66)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@arco-design/color': 0.4.0
       '@babel/runtime': 7.24.5
@@ -2130,14 +2170,14 @@ snapshots:
       react-dom: 18.2.0(react@18.2.0)
       react-focus-lock: 2.12.1(@types/react@18.2.66)(react@18.2.0)
       react-is: 18.3.1
-      react-transition-group: 4.4.5(react-dom@18.2.0)(react@18.2.0)
+      react-transition-group: 4.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       resize-observer-polyfill: 1.5.1
       scroll-into-view-if-needed: 2.2.20
       shallowequal: 1.1.0
     transitivePeerDependencies:
       - '@types/react'
 
-  '@arco-design/web-vue@2.55.1(vue@3.4.21)':
+  '@arco-design/web-vue@2.55.1(vue@3.4.21(typescript@5.2.2))':
     dependencies:
       '@arco-design/color': 0.4.0
       b-tween: 0.3.3
@@ -2428,11 +2468,13 @@ snapshots:
 
   '@remix-run/router@1.16.1': {}
 
-  '@rollup/pluginutils@5.1.0':
+  '@rollup/pluginutils@5.1.0(rollup@4.17.2)':
     dependencies:
       '@types/estree': 1.0.5
       estree-walker: 2.0.2
       picomatch: 2.3.1
+    optionalDependencies:
+      rollup: 4.17.2
 
   '@rollup/rollup-android-arm-eabi@4.17.2':
     optional: true
@@ -2527,7 +2569,7 @@ snapshots:
 
   '@types/semver@7.5.8': {}
 
-  '@typescript-eslint/eslint-plugin@7.2.0(@typescript-eslint/parser@7.2.0)(eslint@8.57.0)(typescript@5.2.2)':
+  '@typescript-eslint/eslint-plugin@7.2.0(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.2.2))(eslint@8.57.0)(typescript@5.2.2)':
     dependencies:
       '@eslint-community/regexpp': 4.10.0
       '@typescript-eslint/parser': 7.2.0(eslint@8.57.0)(typescript@5.2.2)
@@ -2542,6 +2584,7 @@ snapshots:
       natural-compare: 1.4.0
       semver: 7.6.2
       ts-api-utils: 1.3.0(typescript@5.2.2)
+    optionalDependencies:
       typescript: 5.2.2
     transitivePeerDependencies:
       - supports-color
@@ -2554,6 +2597,7 @@ snapshots:
       '@typescript-eslint/visitor-keys': 7.2.0
       debug: 4.3.4
       eslint: 8.57.0
+    optionalDependencies:
       typescript: 5.2.2
     transitivePeerDependencies:
       - supports-color
@@ -2570,6 +2614,7 @@ snapshots:
       debug: 4.3.4
       eslint: 8.57.0
       ts-api-utils: 1.3.0(typescript@5.2.2)
+    optionalDependencies:
       typescript: 5.2.2
     transitivePeerDependencies:
       - supports-color
@@ -2586,6 +2631,7 @@ snapshots:
       minimatch: 9.0.3
       semver: 7.6.2
       ts-api-utils: 1.3.0(typescript@5.2.2)
+    optionalDependencies:
       typescript: 5.2.2
     transitivePeerDependencies:
       - supports-color
@@ -2611,7 +2657,7 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@vitejs/plugin-react@4.2.1(vite@5.2.0)':
+  '@vitejs/plugin-react@4.2.1(vite@5.2.0(@types/node@20.12.11)(less@4.2.0))':
     dependencies:
       '@babel/core': 7.24.5
       '@babel/plugin-transform-react-jsx-self': 7.24.5(@babel/core@7.24.5)
@@ -2622,7 +2668,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitejs/plugin-vue@5.0.4(vite@5.2.0)(vue@3.4.21)':
+  '@vitejs/plugin-vue@5.0.4(vite@5.2.0(@types/node@20.12.11)(less@4.2.0))(vue@3.4.21(typescript@5.2.2))':
     dependencies:
       vite: 5.2.0(@types/node@20.12.11)(less@4.2.0)
       vue: 3.4.21(typescript@5.2.2)
@@ -2693,8 +2739,9 @@ snapshots:
       computeds: 0.0.1
       minimatch: 9.0.4
       path-browserify: 1.0.1
-      typescript: 5.2.2
       vue-template-compiler: 2.7.16
+    optionalDependencies:
+      typescript: 5.2.2
 
   '@vue/reactivity@3.4.21':
     dependencies:
@@ -2711,7 +2758,7 @@ snapshots:
       '@vue/shared': 3.4.21
       csstype: 3.1.3
 
-  '@vue/server-renderer@3.4.21(vue@3.4.21)':
+  '@vue/server-renderer@3.4.21(vue@3.4.21(typescript@5.2.2))':
     dependencies:
       '@vue/compiler-ssr': 3.4.21
       '@vue/shared': 3.4.21
@@ -3532,6 +3579,24 @@ snapshots:
       pkg-types: 1.1.1
       ufo: 1.5.3
 
+  mobx-react-lite@4.0.7(mobx@6.12.3)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+    dependencies:
+      mobx: 6.12.3
+      react: 18.2.0
+      use-sync-external-store: 1.2.2(react@18.2.0)
+    optionalDependencies:
+      react-dom: 18.2.0(react@18.2.0)
+
+  mobx-react@9.1.1(mobx@6.12.3)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+    dependencies:
+      mobx: 6.12.3
+      mobx-react-lite: 4.0.7(mobx@6.12.3)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react: 18.2.0
+    optionalDependencies:
+      react-dom: 18.2.0(react@18.2.0)
+
+  mobx@6.12.3: {}
+
   ms@2.1.2: {}
 
   muggle-string@0.4.1: {}
@@ -3649,12 +3714,13 @@ snapshots:
   pify@4.0.1:
     optional: true
 
-  pinia@2.1.7(typescript@5.2.2)(vue@3.4.21):
+  pinia@2.1.7(typescript@5.2.2)(vue@3.4.21(typescript@5.2.2)):
     dependencies:
       '@vue/devtools-api': 6.6.1
-      typescript: 5.2.2
       vue: 3.4.21(typescript@5.2.2)
-      vue-demi: 0.14.7(vue@3.4.21)
+      vue-demi: 0.14.7(vue@3.4.21(typescript@5.2.2))
+    optionalDependencies:
+      typescript: 5.2.2
 
   pkg-types@1.1.1:
     dependencies:
@@ -3699,13 +3765,14 @@ snapshots:
   react-focus-lock@2.12.1(@types/react@18.2.66)(react@18.2.0):
     dependencies:
       '@babel/runtime': 7.24.5
-      '@types/react': 18.2.66
       focus-lock: 1.3.5
       prop-types: 15.8.1
       react: 18.2.0
       react-clientside-effect: 1.2.6(react@18.2.0)
       use-callback-ref: 1.3.2(@types/react@18.2.66)(react@18.2.0)
       use-sidecar: 1.1.2(@types/react@18.2.66)(react@18.2.0)
+    optionalDependencies:
+      '@types/react': 18.2.66
 
   react-is@16.13.1: {}
 
@@ -3713,7 +3780,7 @@ snapshots:
 
   react-refresh@0.14.2: {}
 
-  react-router-dom@6.23.1(react-dom@18.2.0)(react@18.2.0):
+  react-router-dom@6.23.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@remix-run/router': 1.16.1
       react: 18.2.0
@@ -3725,7 +3792,7 @@ snapshots:
       '@remix-run/router': 1.16.1
       react: 18.2.0
 
-  react-transition-group@4.4.5(react-dom@18.2.0)(react@18.2.0):
+  react-transition-group@4.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@babel/runtime': 7.24.5
       dom-helpers: 5.2.1
@@ -4024,9 +4091,9 @@ snapshots:
 
   undici-types@5.26.5: {}
 
-  unimport@3.7.1:
+  unimport@3.7.1(rollup@4.17.2):
     dependencies:
-      '@rollup/pluginutils': 5.1.0
+      '@rollup/pluginutils': 5.1.0(rollup@4.17.2)
       acorn: 8.11.3
       escape-string-regexp: 5.0.0
       estree-walker: 3.0.3
@@ -4042,23 +4109,23 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  unplugin-auto-import@0.17.5:
+  unplugin-auto-import@0.17.5(rollup@4.17.2):
     dependencies:
       '@antfu/utils': 0.7.8
-      '@rollup/pluginutils': 5.1.0
+      '@rollup/pluginutils': 5.1.0(rollup@4.17.2)
       fast-glob: 3.3.2
       local-pkg: 0.5.0
       magic-string: 0.30.10
       minimatch: 9.0.4
-      unimport: 3.7.1
+      unimport: 3.7.1(rollup@4.17.2)
       unplugin: 1.10.1
     transitivePeerDependencies:
       - rollup
 
-  unplugin-vue-components@0.27.0(vue@3.4.21):
+  unplugin-vue-components@0.27.0(@babel/parser@7.24.5)(rollup@4.17.2)(vue@3.4.21(typescript@5.2.2)):
     dependencies:
       '@antfu/utils': 0.7.8
-      '@rollup/pluginutils': 5.1.0
+      '@rollup/pluginutils': 5.1.0(rollup@4.17.2)
       chokidar: 3.6.0
       debug: 4.3.4
       fast-glob: 3.3.2
@@ -4068,6 +4135,8 @@ snapshots:
       resolve: 1.22.8
       unplugin: 1.10.1
       vue: 3.4.21(typescript@5.2.2)
+    optionalDependencies:
+      '@babel/parser': 7.24.5
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -4091,16 +4160,22 @@ snapshots:
 
   use-callback-ref@1.3.2(@types/react@18.2.66)(react@18.2.0):
     dependencies:
-      '@types/react': 18.2.66
       react: 18.2.0
       tslib: 2.6.2
+    optionalDependencies:
+      '@types/react': 18.2.66
 
   use-sidecar@1.1.2(@types/react@18.2.66)(react@18.2.0):
     dependencies:
-      '@types/react': 18.2.66
       detect-node-es: 1.1.0
       react: 18.2.0
       tslib: 2.6.2
+    optionalDependencies:
+      '@types/react': 18.2.66
+
+  use-sync-external-store@1.2.2(react@18.2.0):
+    dependencies:
+      react: 18.2.0
 
   validate-npm-package-license@3.0.4:
     dependencies:
@@ -4109,19 +4184,19 @@ snapshots:
 
   vite@5.2.0(@types/node@20.12.11)(less@4.2.0):
     dependencies:
-      '@types/node': 20.12.11
       esbuild: 0.20.2
-      less: 4.2.0
       postcss: 8.4.38
       rollup: 4.17.2
     optionalDependencies:
+      '@types/node': 20.12.11
       fsevents: 2.3.3
+      less: 4.2.0
 
-  vue-demi@0.14.7(vue@3.4.21):
+  vue-demi@0.14.7(vue@3.4.21(typescript@5.2.2)):
     dependencies:
       vue: 3.4.21(typescript@5.2.2)
 
-  vue-router@4.3.2(vue@3.4.21):
+  vue-router@4.3.2(vue@3.4.21(typescript@5.2.2)):
     dependencies:
       '@vue/devtools-api': 6.6.1
       vue: 3.4.21(typescript@5.2.2)
@@ -4143,8 +4218,9 @@ snapshots:
       '@vue/compiler-dom': 3.4.21
       '@vue/compiler-sfc': 3.4.21
       '@vue/runtime-dom': 3.4.21
-      '@vue/server-renderer': 3.4.21(vue@3.4.21)
+      '@vue/server-renderer': 3.4.21(vue@3.4.21(typescript@5.2.2))
       '@vue/shared': 3.4.21
+    optionalDependencies:
       typescript: 5.2.2
 
   webpack-sources@3.2.3: {}
