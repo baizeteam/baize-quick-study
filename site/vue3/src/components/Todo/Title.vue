@@ -9,18 +9,18 @@
 defineProps({
   title: {
     required: true,
-    type: String
+    type: String,
   },
   radius: {
     required: true,
-    type: Number
-  }
-})
+    type: Number,
+  },
+});
 </script>
 
 <style lang="less" scoped>
 .title {
-  margin: 20px 0;
+  margin-bottom: 16px;
   .text {
     font-weight: 600;
     font-size: 25px;

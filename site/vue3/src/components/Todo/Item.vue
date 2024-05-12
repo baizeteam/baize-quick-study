@@ -17,57 +17,54 @@
       />
     </div>
     <!--    scope -->
-    <div class="del justify-center pointer" @click="onDel">
-      <span class="radius flex-center">-</span>
-    </div>
+    <a-button type="text" status="danger" @click="onDel">删除</a-button>
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from "vue"
+import { ref } from "vue";
 import { $Notification } from "@/utils/toast.ts";
 
 const props = defineProps({
   data: {
     type: Object,
-    default: () => ({})
+    default: () => ({}),
   },
   isUndo: {
     type: Boolean,
-    default: false
-  }
-})
+    default: false,
+  },
+});
 
-const emit = defineEmits(["del", "change"])
-// const { data, isUndo } = toRefs(props)
-const data = ref(props.data)
-const isUndo = ref(props.isUndo)
-const contentRef = ref() // v-if后只有一个，根据业务情况来
+const emit = defineEmits(["del", "change"]);
+const data = ref(props.data);
+const isUndo = ref(props.isUndo);
+const contentRef = ref(); // v-if后只有一个，根据业务情况来
 /** method */
 const show = function () {
-  if (!isUndo.value) return
-  data.value.input = true
+  if (!isUndo.value) return;
+  data.value.input = true;
   setTimeout(function () {
-    contentRef.value.focus()
-  }, 100)
-}
+    contentRef.value.focus();
+  }, 100);
+};
 const change = function (e) {
-  const inputVal = e.target.value
+  const inputVal = e.target.value;
   if (!inputVal) {
-    return $Notification('不能更改为空白!')
+    return $Notification({ content: "不能更改为空白!" });
   }
   // console.log(value,'change')
-  emit("change", inputVal)
+  emit("change", inputVal);
   setTimeout(function () {
-    data.value.input = false
-  }, 100)
-}
+    data.value.input = false;
+  }, 100);
+};
 const onDel = function () {
-  const result: unknown | null = prompt("您确定要删除吗?该操作不可恢复")
+  const result: unknown | null = prompt("您确定要删除吗?该操作不可恢复");
   if (result !== null) {
     // 取消就是null, 输入字符串null为'null'
-    emit("del")
+    emit("del");
   }
-}
+};
 </script>
 
 <style lang="less" scoped>
@@ -84,17 +81,6 @@ const onDel = function () {
     .content {
       display: inline-block;
       width: 80%;
-    }
-  }
-  .del {
-    flex: 1;
-    .radius {
-      border-radius: 50%;
-      background: #ddd;
-      width: 20px;
-      height: 20px;
-      color: #666;
-      user-select: none;
     }
   }
 }
