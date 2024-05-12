@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // 一般来说，一个vue组件只需要单独一个vue文件即可，不需要外层再包一个目录，这里为了和react的机构保持一致，将vue组件放在一个目录下。
-import {  reactive, onMounted } from "vue";
+import { reactive, onMounted } from "vue";
 import VueSvg from "@/assets/vue.svg";
 import { useRouter } from "vue-router";
 const router = useRouter();
@@ -27,8 +27,9 @@ onMounted(() => {});
     <a-menu-item key="null" disabled>
       <img :src="VueSvg" />
     </a-menu-item>
-    <a-menu-item key="/">Home</a-menu-item>
-    <a-menu-item key="/my">My</a-menu-item>
+    <a-menu-item key="/">基本使用</a-menu-item>
+    <a-menu-item key="/life-cycle">生命周期</a-menu-item>
+    <a-menu-item key="/store-use">状态管理</a-menu-item>
   </a-menu>
 </template>
 

@@ -1,19 +1,24 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 // 懒加载
-const Todo = () => import("@/pages/todo/index.vue");
-const My = () => import("@/pages/my/index.vue");
+const BaseUse = () => import("@/pages/baseUse/index.vue");
+const LifeCycle = () => import("@/pages/lifeCycle/index.vue");
+const StoreUse = () => import("@/pages/storeUse/index.vue");
 const NotFound = () => import("@/pages/notFound/index.vue");
 
 // 路由配置
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    component: Todo,
+    component: BaseUse,
   },
   {
-    path: "/my",
-    component: My,
+    path: "/life-cycle",
+    component: LifeCycle,
+  },
+  {
+    path: "/store-use",
+    component: StoreUse,
   },
   {
     path: "/:catchAll(.*)",

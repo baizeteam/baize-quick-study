@@ -86,7 +86,7 @@ const delItem = function (type: TYPE_UNDO_DONE, index: number) {
 };
 const onfinish = function () {
   nextTick(function () {
-    const checks = Array.from(document.getElementsByClassName("checkBoxInput") as Array<HTMLInputElement>);
+    const checks = Array.from(document.getElementsByClassName("checkBoxInput")) as HTMLInputElement[];
     let noChecks: boolean = true;
     checks.forEach((item) => {
       if (item.checked) {
