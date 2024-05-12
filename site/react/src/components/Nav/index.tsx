@@ -27,8 +27,10 @@ export default function Nav() {
       <MenuItem key="null" disabled>
         <img src={ReactSvg} styleName="logo" alt="Vite logo" />
       </MenuItem>
-      <MenuItem key="/">Home</MenuItem>
-      <MenuItem key="/my">My</MenuItem>
+      <MenuItem key="/">基本使用</MenuItem>
+      <MenuItem key="/life-cycle">生命周期</MenuItem>
+      <MenuItem key="/store-use">状态管理</MenuItem>
+      <MenuItem key="/api-use">接口请求</MenuItem>
     </Menu>
   );
 }

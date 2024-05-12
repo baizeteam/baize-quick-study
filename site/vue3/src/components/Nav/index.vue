@@ -30,6 +30,7 @@ onMounted(() => {});
     <a-menu-item key="/">基本使用</a-menu-item>
     <a-menu-item key="/life-cycle">生命周期</a-menu-item>
     <a-menu-item key="/store-use">状态管理</a-menu-item>
+    <a-menu-item key="/api-use">接口请求</a-menu-item>
   </a-menu>
 </template>
 

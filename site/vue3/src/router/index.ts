@@ -4,6 +4,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 const BaseUse = () => import("@/pages/baseUse/index.vue");
 const LifeCycle = () => import("@/pages/lifeCycle/index.vue");
 const StoreUse = () => import("@/pages/storeUse/index.vue");
+const ApiUse = () => import("@/pages/apiUse/index.vue");
 const NotFound = () => import("@/pages/notFound/index.vue");
 
 // 路由配置
@@ -19,6 +20,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/store-use",
     component: StoreUse,
+  },
+  {
+    path: "/api-use",
+    component: ApiUse,
   },
   {
     path: "/:catchAll(.*)",
