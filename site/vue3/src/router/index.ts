@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 // 懒加载
-const Home = () => import("@/pages/home/index.vue");
+const Todo = () => import("@/pages/todo/index.vue");
 const My = () => import("@/pages/my/index.vue");
 const NotFound = () => import("@/pages/notFound/index.vue");
 
@@ -9,7 +9,7 @@ const NotFound = () => import("@/pages/notFound/index.vue");
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    component: Home,
+    component: Todo,
   },
   {
     path: "/my",
