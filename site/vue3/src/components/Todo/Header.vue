@@ -4,20 +4,21 @@
       <div>
         <a-button @click="emit('teach')" type="text">查看教程</a-button>
       </div>
-      <a-input
-        ref="inputRef"
+
+      <a-input-search
         class="head-input"
-        v-model="inputVal"
-        @keyup.enter="onEnter"
         :style="{ width: '320px' }"
-        placeholder="Please enter something"
-        allow-clear
+        v-model="inputVal"
+        @search="onEnter"
+        placeholder="请输入"
+        button-text="添加"
+        search-button
       />
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import { $Notification } from "@/utils/toast.ts";
 
 defineProps({
@@ -30,22 +31,16 @@ defineProps({
     type: String,
   },
 });
-const inputRef = ref();
 const inputVal = ref("");
-const emit = defineEmits(["enterValue", "teach"]);
+const emit = defineEmits(["addData", "teach"]);
 /** method */
 const onEnter = function () {
   if (!inputVal.value) {
     return $Notification({ content: "请键入内容再回车！" });
   }
-  emit("enterValue", inputVal.value);
+  emit("addData", inputVal.value);
   inputVal.value = ""; // after enter we should clear this value
 };
-
-/** life callback*/
-onMounted(function () {
-  inputRef.value.focus();
-});
 </script>
 
 <style lang="less" scoped>

@@ -11,6 +11,7 @@ declare module 'vue' {
     AConfigProvider: typeof import('@arco-design/web-vue')['ConfigProvider']
     AEmpty: typeof import('@arco-design/web-vue')['Empty']
     AInput: typeof import('@arco-design/web-vue')['Input']
+    AInputSearch: typeof import('@arco-design/web-vue')['InputSearch']
     AMenu: typeof import('@arco-design/web-vue')['Menu']
     AMenuItem: typeof import('@arco-design/web-vue')['MenuItem']
     AModal: typeof import('@arco-design/web-vue')['Modal']

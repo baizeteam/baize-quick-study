@@ -1,5 +1,5 @@
 <template>
-  <Header :height="headHeight" @teach="onDriver(true)" :width="mainWidth" @enterValue="addUndoItem" />
+  <Header :height="headHeight" @teach="onDriver(true)" :width="mainWidth" @addData="addUndoItem" />
   <div class="main" :style="{ height: `calc(100vh - ${headHeight} - 21px` }">
     <div class="list" :style="{ width: mainWidth }">
       <div class="undoList">
