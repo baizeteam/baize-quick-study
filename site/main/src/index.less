@@ -1,8 +1,7 @@
-body {
-  margin: 0;
+* {
   padding: 0;
+  margin: 0;
 }
-
 .app-container {
   display: flex;
   width: 100%;
@@ -12,4 +11,46 @@ body {
     width: 50vw;
     border-right: 1px solid #eee;
   }
+}
+
+li {
+  list-style: none;
+}
+
+.flex {
+  display: flex;
+}
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.justify-end {
+  display: flex;
+  justify-content: flex-end;
+}
+.justify-center {
+  display: flex;
+  justify-content: center;
+}
+.justify-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.align-center {
+  display: flex;
+  align-items: center;
+}
+
+.pointer {
+  cursor: pointer;
 }
