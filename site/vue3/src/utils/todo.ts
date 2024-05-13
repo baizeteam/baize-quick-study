@@ -1,4 +1,5 @@
 import { INF_LIST_ITEM, TYPE_LIST } from "@/types/todoList.ts";
+import _ from "lodash";
 const TODO: "todo" = "todo";
 
 export const addItem = function (list: TYPE_LIST, content: string) {
@@ -14,7 +15,7 @@ export const addItem = function (list: TYPE_LIST, content: string) {
     }
   });
 };
-export const changeItem = function (list: TYPE_LIST, index: number, key: keyof INF_LIST_ITEM, value: any) {
+export const changeItem = function (list: TYPE_LIST, index: number, key: keyof INF_LIST_ITEM, value: string | boolean) {
   return new Promise((resolve, reject) => {
     try {
       list[index][key] = value;
@@ -36,6 +37,22 @@ export const delItem = function (list: TYPE_LIST, content: string) {
       resolve("删除成功");
     } catch (e) {
       const msg = "删除失败";
+      console.error(msg + ":" + e);
+      reject(msg);
+    }
+  });
+};
+export const DelMultiple = function (list: TYPE_LIST, ids: Array<string>) {
+  return new Promise((resolve, reject) => {
+    try {
+      for (let id of ids) {
+        const i = list.findIndex((item) => item.content === id);
+        list.splice(i, 1); // 模拟数据库删除
+      }
+      localStorage.setItem(TODO, JSON.stringify(list));
+      resolve("批量删除成功");
+    } catch (e) {
+      const msg = "批量删除失败";
       console.error(msg + ":" + e);
       reject(msg);
     }

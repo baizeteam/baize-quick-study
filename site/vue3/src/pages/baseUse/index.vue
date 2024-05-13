@@ -2,7 +2,7 @@
 import Todo from "@/components/Todo/Index.vue";
 import { ref } from "vue";
 import { INF_LIST_ITEM, TYPE_LIST } from "@/types/todoList.ts";
-import { getList, delItem, addItem, changeItem } from "@/utils/todo.ts";
+import { getList, delItem, addItem, changeItem, DelMultiple } from "@/utils/todo.ts";
 import { $Notification } from "@/utils/toast.ts";
 
 const todoList = ref(getList() as TYPE_LIST);
@@ -12,7 +12,7 @@ const del = function (content: string) {
     .catch((e:string) => $Notification({content:e, type: 'error'}))
 };
 
-const change = function (index:number, key: keyof INF_LIST_ITEM, value: any) {
+const change = function (index:number, key: keyof INF_LIST_ITEM, value: string | boolean) {
   changeItem(todoList.value, index, key,value)
     .then((r:string)=>  {
       key !== 'input' && $Notification({content: r})
@@ -26,7 +26,9 @@ const add = function (content: string) {
     .catch((e:string) => $Notification({content:e, type: 'error'}))
 };
 const multipleDel = function(ids: Array<string>){
-  ids.forEach(content=> del(content))
+  DelMultiple(todoList.value, ids)
+    .then((r:string)=> $Notification({content: r}))
+    .catch((e:string) => $Notification({content:e, type: 'error'}))
 }
 </script>
 
