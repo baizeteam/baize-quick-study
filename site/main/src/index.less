@@ -3,13 +3,23 @@
   margin: 0;
 }
 .app-container {
-  display: flex;
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  .app-item {
-    width: 50vw;
-    border-right: 1px solid #eee;
+  .app-container-header {
+    height: 60px;
+    background: #333;
+    color: #fff;
+  }
+  .app-container-content {
+    height: calc(~"100vh - 60px");
+    display: flex;
+    position: relative;
+    .app-item {
+      width: 50vw;
+      height: 100%;
+      border-right: 1px solid #eee;
+    }
   }
 }
 
@@ -59,12 +69,12 @@ li {
 }
 
 // todos
-.todosPage{
-  .undo{
+.todosPage {
+  .undo {
     font-size: 16px;
     color: #666;
     font-weight: 600;
-    span{
+    span {
       border-radius: 50%;
       width: 25px;
       height: 25px;
@@ -90,7 +100,7 @@ li {
           width: 80%;
         }
       }
-      .gray{
+      .gray {
         color: gray;
       }
     }

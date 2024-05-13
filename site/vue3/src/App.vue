@@ -22,14 +22,11 @@ export default {
 </template>
 
 <style scoped lang="less">
-#app {
-  height: 100%;
-  overflow: hidden;
-}
 .app-container {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  height: 100%;
 
   .content {
     padding: 24px;
