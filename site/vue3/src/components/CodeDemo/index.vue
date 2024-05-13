@@ -44,7 +44,6 @@ onMounted(() => {
 });
 
 const renderCode = unescapeHtml(codeData);
-console.log(renderCode);
 </script>
 
 <template>
