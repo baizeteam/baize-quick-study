@@ -6,40 +6,32 @@
       :style="{ width: '320px' }"
       v-model="inputVal"
       @search="onAdd"
+      @enter="onAdd"
       placeholder="请输入"
       button-text="添加"
       search-button
     />
   </div>
-  <div class="list">
-    <div class="align-center justify-between">
-      <a-button type="primary" @click="onfinish" v-show="todoList.length">完成</a-button>
+    <div class="justify-end" style="padding: 20px 0">
+      <a-button type="primary" @click="onMultipleDel" v-show="todoList.length">批量删除</a-button>
     </div>
-    <div class="justify-between align-center item" v-for="item in todoList" :key="item.content">
+  <div class="list">
+    <div class="justify-between align-center item" v-for="(item,index) in todoList" :key="item.content">
       <!--    contents -->
       <div class="warp">
         <input type="checkbox" class="checkBox checkBoxInput" :value="item.content" />
-        <span class="content" v-if="!item.input" @click="onContent">{{ item.content }}</span>
+        <span class="content" v-if="!item.input" @click="onContent(item)">{{ item.content }}</span>
         <input
           class="content"
           v-else
-          ref="contentRef"
+          ref="contentRefs"
           :value="item.content"
-          @keyup.enter="changeContent($event, item)"
-          @blur="changeContent($event, item)"
+          @keyup.enter="changeContent($event, item,index)"
+          @blur="changeContent($event, item,index)"
         />
       </div>
       <!--    scope -->
-      <a-popover :popup-visible="tipShow" position="left" title="提示">
-        <a-button type="text" status="danger" @click="tipShow = true">删除</a-button>
-        <template #content>
-          <p style="margin: 6px 0">您确定要删除吗？删除后不可恢复</p>
-          <div class="justify-end">
-            <a-button style="margin-right: 6px" type="primary" @click="delItem">确定</a-button>
-            <a-button @click="tipShow = false">取消</a-button>
-          </div>
-        </template>
-      </a-popover>
+        <a-button type="text" status="danger" @click="onDel(item.content)">删除</a-button>
     </div>
   </div>
 </template>
@@ -48,7 +40,7 @@
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
 import { computed, nextTick, onMounted, ref } from "vue";
-import { TYPE_LIST } from "@/types/todoList.ts";
+import { INF_LIST_ITEM, TYPE_LIST } from "@/types/todoList.ts";
 import { $Notification } from "@/utils/toast.ts";
 import { Modal } from "@arco-design/web-vue";
 
@@ -59,26 +51,25 @@ const props = defineProps({
   },
 });
 /** data */
-const emit = defineEmits(["change", "add"]);
+const emit = defineEmits(["change", "add", 'del', 'multipleDel']);
 const tipShow = ref<boolean>(false);
-const contentRef = ref(); // v-if后只有一个，根据业务情况来
+const contentRefs = ref(); // v-if后只有一个，根据业务情况来
 const inputVal = ref("");
 const todoList: TYPE_LIST = computed(() => props.list);
 /** method */
 const onContent = function (item) {
   item.input = true;
   setTimeout(function () {
-    contentRef.value.focus();
+    contentRefs.value[0].focus()
   }, 100);
 };
 
-const changeContent = function (e, item) {
+const changeContent = function (e, item:INF_LIST_ITEM, index:number) {
   const inputVal = e.target.value;
   if (!inputVal) {
     return $Notification({ content: "不能更改为空白!" });
   }
-  // console.log(value,'changeContent')
-  emit("change", inputVal);
+  emit("change", inputVal,index);
   setTimeout(function () {
     item.input = false;
   }, 100);
@@ -94,17 +85,28 @@ const onAdd = function () {
   emit("add", inputVal.value);
   inputVal.value = ""; // after enter we should clear this value
 };
-const onfinish = function () {
+const onDel = function(content:string){
+  Modal.confirm({
+    title: "提示",
+    content: "您确定要删除吗？删除后不可恢复",
+    onOk: () => {
+      emit("del", content);
+    },
+  })
+}
+const onMultipleDel = function () {
   nextTick(function () {
     const checks = Array.from(document.getElementsByClassName("checkBoxInput")) as HTMLInputElement[];
     let noChecks: boolean = true;
+    const ids:Array<string> = []
     checks.forEach((item) => {
       if (item.checked) {
         noChecks = false;
-        emit("add");
+        ids.push(item.value)
       }
     });
-    if (noChecks) return $Notification({ content: "请先选择未完成项目" });
+    if (noChecks) return $Notification({ content: "请先选择项目" });
+    emit('multipleDel', ids)
   });
 };
 
@@ -128,7 +130,7 @@ const onDriver = function (isTeach?: boolean) {
         element: todoList.value.length ? ".content" : ".undoList",
         popover: { title: "第二步", description: "该项目会出现在未完成列表里" },
       },
-      { element: ".checkBoxInput", popover: { title: "第三步", description: "点击勾选该项目" } },
+      { element: ".checkBoxInput", popover: { title: "第三步", description: "如果需要完成该项目，点击勾选该项目" } },
       { element: ".onfinish", popover: { title: "第四步", description: "点击完成" } },
       { element: ".doneList", popover: { title: "第五步", description: "项目会来到已完成列表" } },
       { element: ".head-input", popover: { title: "最后", description: "来试一试吧!" } },
@@ -153,7 +155,7 @@ onMounted(function () {
   margin: auto;
   .item {
     background: #fff;
-    padding: 0 6px;
+    padding: 5px 0;
     .warp {
       flex: 9;
       .checkBox {
