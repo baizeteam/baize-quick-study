@@ -40,7 +40,7 @@ export default function Todo(props: INF_PROPS) {
   };
   const onAdd = function () {
     if (!inputVal) {
-      return $Notification({ content: "请键入内容再回车！", type: "warning" });
+      return $Notification({ content: "请键入内容！", type: "warning" });
     }
     const isFound: boolean = todoList.filter((item) => item.content === inputVal.value).length > 0;
     if (isFound) {
