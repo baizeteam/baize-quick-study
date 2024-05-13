@@ -1,11 +1,9 @@
-import { exec } from 'child_process';
+import { exec } from "child_process";
 
 // 项目列表
-const siteList = ['main', 'react', 'vue3'];
+const siteList = ["main", "react", "vue3"];
 
-const commandList = siteList.map((site) =>
-  runCommand(`cd site/${site} && npm run dev`)
-);
+const commandList = siteList.map((site) => runCommand(`cd site/${site} && npm run dev`));
 
 function runCommand(command) {
   return new Promise((resolve, reject) => {
@@ -24,8 +22,8 @@ function runCommand(command) {
 
 Promise.all(commandList)
   .then((results) => {
-    console.log('done!-------', results);
+    console.log("done!-------", results);
   })
   .catch((err) => {
-    console.log('failed!------', err);
+    console.log("failed!------", err);
   });
