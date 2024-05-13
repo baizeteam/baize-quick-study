@@ -1,6 +1,6 @@
 <template>
   <div class="head align-center justify-between">
-    <a-button @click="onDriver(true)" type="text">查看教程</a-button>
+    <a-button @click="onDriver" type="text">查看教程</a-button>
     <a-input-search
       class="head-input"
       :style="{ width: '320px' }"
@@ -14,7 +14,7 @@
   </div>
     <div class="justify-between align-center" style="padding: 20px 0">
       <div class="undo align-center">
-        待办
+        待办数
         <span class="flex-center">{{todoList.filter(item=> !item.finished).length}}</span>
       </div>
       <a-button type="primary" @click="onMultipleDel" v-show="todoList.length">批量删除</a-button>
@@ -36,7 +36,7 @@
       </div>
       <!--    scope -->
       <a-button type="text" status="primary" class="finish" :class="item.finished ? 'gray' : ''" @click="onFinish(index,item)">
-        {{item.finished ? '已完成' : '完成'}}
+        {{item.finished ? '已完成' : '完成待办'}}
       </a-button>
         <a-button type="text" status="danger" @click="onDel(item.content)">删除</a-button>
     </div>
@@ -95,7 +95,7 @@ const onAdd = function () {
   inputVal.value = ""; // after enter we should clear this value
 };
 const onFinish = function(index:number,item:INF_LIST_ITEM){
-  if(item.finished) return $Notification({content: '已经是已完成状态!'})
+  if(item.finished) return $Notification({content: '已经是已完成状态!', type: 'warning'})
   emit('change', index, 'finished', true)
 }
 const onDel = function(content:string){
@@ -123,55 +123,61 @@ const onMultipleDel = function () {
   });
 };
 
-const onDriver = function (isTeach?: boolean) {
-  const content = "示例：先赚一个小目标";
-  // 有可能是不小心删了初次的undoItem, 但还想查看示例, 为他增加一个示例
-  if (!todoList.value.length) {
-    Modal.confirm({
-      title: "提示",
-      content: "检测到您未添加未完成项目，是否自动增加一个示例？",
-      onOk: () => {
-        emit("add", content);
-      },
-    });
-  }
-  const driverObj = driver({
-    showProgress: true,
-    steps: [
-      { element: ".head-input", popover: { title: "第一步", description: "首先输入需要完成的项目" } },
-      {
-        element: '.item',
-        popover: { title: "第二步", description: "该项目会出现在列表里" },
-      },
-      { element: ".finish", popover: { title: "第三步", description: "如果需要完成该项目，点击完成按钮" } },
-      { element: ".list", popover: { title: "第四步", description: "您可以查看所有的待办清单状态" } },
-      { element: ".undo", popover: { title: "第五步", description: "您也可以查看待办的数量" } },
-      { element: ".head-input", popover: { title: "最后", description: "来试一试吧!" } },
-    ],
-  });
-  const hasDriver: string = "hasDriver";
-  if (!localStorage.getItem(hasDriver) || isTeach) {
-    !isTeach && emit("add", content); // 做了引导步骤，就得需要示例项目, 但isTeach肯定会重复添加
-    localStorage.setItem(hasDriver, "true");
+const driverObj = driver({
+  showProgress: true,
+  steps: [
+    { element: ".head-input", popover: { title: "第一步", description: "首先输入需要完成的项目" } },
+    {
+      element: '.item',
+      popover: { title: "第二步", description: "该项目会出现在列表里" },
+    },
+    { element: ".finish", popover: { title: "第三步", description: "如果需要完成该项目，点击完成按钮" } },
+    { element: ".list", popover: { title: "第四步", description: "您可以查看所有的待办清单状态" } },
+    { element: ".undo", popover: { title: "第五步", description: "您也可以查看待办的数量" } },
+    { element: ".head-input", popover: { title: "最后", description: "来试一试吧!" } },
+  ],
+});
+const tempContent = "示例：先赚一个小目标";
+const onDriver = function () {
+  const hasTodos = todoList.value.length > 0;
+  if (hasTodos) {
     driverObj.drive();
+  } else {
+    Modal.confirm({
+      title: '欢迎来到"待办清单"',
+      content: "是否自动填加一个示例？",
+      onOk: () => {
+        emit("add", tempContent);
+        setTimeout(driverObj.drive, 50);
+      },
+      onCancel: ()=>{
+        $Notification({content: '请添加示例!',type: 'warning'})
+      }
+    });
   }
 };
 
 /** life callback */
 onMounted(function () {
-  // onDriver();
+  const isUsedKey = 'isUsed'
+  const isUsed = localStorage.getItem(isUsedKey);
+  if(!isUsed){
+    localStorage.setItem(isUsedKey,'true')
+    onDriver()
+  }
 });
 </script>
 
 <style lang="less" scoped>
 .undo{
-  font-size: 18px;
+  font-size: 16px;
+  color: #666;
   font-weight: 600;
   span{
     border-radius: 50%;
     width: 25px;
     height: 25px;
-    background: gray;
+    background: #c9c9c9;
     color: #ffffff;
     margin-left: 6px;
   }
