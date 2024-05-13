@@ -12,7 +12,11 @@
       search-button
     />
   </div>
-    <div class="justify-end" style="padding: 20px 0">
+    <div class="justify-between align-center" style="padding: 20px 0">
+      <div class="undo align-center">
+        待办
+        <span class="flex-center">{{todoList.filter(item=> !item.finished).length}}</span>
+      </div>
       <a-button type="primary" @click="onMultipleDel" v-show="todoList.length">批量删除</a-button>
     </div>
   <div class="list">
@@ -20,17 +24,20 @@
       <!--    contents -->
       <div class="warp">
         <input type="checkbox" class="checkBox checkBoxInput" :value="item.content" />
-        <span class="content" v-if="!item.input" @click="onContent(item)">{{ item.content }}</span>
+        <span class="content" v-if="!item.input" @click="onContent(index)">{{ item.content }}</span>
         <input
           class="content"
           v-else
           ref="contentRefs"
           :value="item.content"
-          @keyup.enter="changeContent($event, item,index)"
-          @blur="changeContent($event, item,index)"
+          @keyup.enter="changeContent($event,index)"
+          @blur="changeContent($event,index)"
         />
       </div>
       <!--    scope -->
+      <a-button type="text" status="primary" class="finish" :class="item.finished ? 'gray' : ''" @click="onFinish(index,item)">
+        {{item.finished ? '已完成' : '完成'}}
+      </a-button>
         <a-button type="text" status="danger" @click="onDel(item.content)">删除</a-button>
     </div>
   </div>
@@ -57,26 +64,28 @@ const contentRefs = ref(); // v-if后只有一个，根据业务情况来
 const inputVal = ref("");
 const todoList: TYPE_LIST = computed(() => props.list);
 /** method */
-const onContent = function (item) {
-  item.input = true;
+const onContent = function (index:number) {
+  emit('change', index, 'input', true)
   setTimeout(function () {
     contentRefs.value[0].focus()
   }, 100);
 };
 
-const changeContent = function (e, item:INF_LIST_ITEM, index:number) {
-  const inputVal = e.target.value;
-  if (!inputVal) {
-    return $Notification({ content: "不能更改为空白!" });
+const changeContent = function (e, index:number) {
+  const currentValue = e.target.value;
+  if (!currentValue) {
+    return $Notification({ content: "不能更改为空白!", type: 'warning' });
   }
-  emit("change", inputVal,index);
+  if(currentValue !== todoList.value[index].content){ // 避免重复emit
+    emit("change", index, 'content', currentValue);
+  }
   setTimeout(function () {
-    item.input = false;
+    emit("change", index, 'input', false);
   }, 100);
 };
 const onAdd = function () {
   if (!inputVal.value) {
-    return $Notification({ content: "请键入内容再回车！" });
+    return $Notification({ content: "请键入内容再回车！",type:'warning' });
   }
   const isFound: boolean = todoList.value.filter((item) => item.content === inputVal.value).length > 0;
   if (isFound) {
@@ -85,6 +94,10 @@ const onAdd = function () {
   emit("add", inputVal.value);
   inputVal.value = ""; // after enter we should clear this value
 };
+const onFinish = function(index:number,item:INF_LIST_ITEM){
+  if(item.finished) return $Notification({content: '已经是已完成状态!'})
+  emit('change', index, 'finished', true)
+}
 const onDel = function(content:string){
   Modal.confirm({
     title: "提示",
@@ -105,7 +118,7 @@ const onMultipleDel = function () {
         ids.push(item.value)
       }
     });
-    if (noChecks) return $Notification({ content: "请先选择项目" });
+    if (noChecks) return $Notification({ content: "请先选择项目",type:'warning' });
     emit('multipleDel', ids)
   });
 };
@@ -127,12 +140,12 @@ const onDriver = function (isTeach?: boolean) {
     steps: [
       { element: ".head-input", popover: { title: "第一步", description: "首先输入需要完成的项目" } },
       {
-        element: todoList.value.length ? ".content" : ".undoList",
-        popover: { title: "第二步", description: "该项目会出现在未完成列表里" },
+        element: '.item',
+        popover: { title: "第二步", description: "该项目会出现在列表里" },
       },
-      { element: ".checkBoxInput", popover: { title: "第三步", description: "如果需要完成该项目，点击勾选该项目" } },
-      { element: ".onfinish", popover: { title: "第四步", description: "点击完成" } },
-      { element: ".doneList", popover: { title: "第五步", description: "项目会来到已完成列表" } },
+      { element: ".finish", popover: { title: "第三步", description: "如果需要完成该项目，点击完成按钮" } },
+      { element: ".list", popover: { title: "第四步", description: "您可以查看所有的待办清单状态" } },
+      { element: ".undo", popover: { title: "第五步", description: "您也可以查看待办的数量" } },
       { element: ".head-input", popover: { title: "最后", description: "来试一试吧!" } },
     ],
   });
@@ -151,6 +164,18 @@ onMounted(function () {
 </script>
 
 <style lang="less" scoped>
+.undo{
+  font-size: 18px;
+  font-weight: 600;
+  span{
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    background: gray;
+    color: #ffffff;
+    margin-left: 6px;
+  }
+}
 .list {
   margin: auto;
   .item {
@@ -167,6 +192,9 @@ onMounted(function () {
         display: inline-block;
         width: 80%;
       }
+    }
+    .gray{
+      color: gray;
     }
   }
   .item + .item {
