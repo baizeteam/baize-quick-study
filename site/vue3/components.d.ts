@@ -14,6 +14,7 @@ declare module 'vue' {
     AMenuItem: typeof import('@arco-design/web-vue')['MenuItem']
     APopover: typeof import('@arco-design/web-vue')['Popover']
     Header: typeof import('./src/components/Todo/Header.vue')['default']
+    Index: typeof import('./src/components/Todo/Index.vue')['default']
     Item: typeof import('./src/components/Todo/Item.vue')['default']
     Nav: typeof import('./src/components/Nav/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
