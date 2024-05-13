@@ -18,7 +18,7 @@ const emit = defineEmits(["change", "add", "del", "multipleDel"]);
 const inputVal = ref("");
 const todoList: TYPE_LIST = computed(() => props.list);
 /** method */
-// 添加
+// 添加任务
 const onAdd = function () {
   if (!inputVal.value) {
     return $Notification({ content: "请键入内容！", type: "warning" });
@@ -31,13 +31,13 @@ const onAdd = function () {
   inputVal.value = ""; // after enter we should clear this value
 };
 
-// 完成
+// 完成任务
 const onFinish = function (index: number, item: INF_LIST_ITEM) {
   if (item.finished) return $Notification({ content: "已经是已完成状态!", type: "warning" });
   emit("change", index, "finished", true);
 };
 
-// 删除
+// 删除任务
 const onDel = function (content: string) {
   Modal.confirm({
     title: "提示",
@@ -66,6 +66,9 @@ onMounted(function () {
   <div class="todosPage">
     <div class="head align-center justify-between">
       <a-button @click="onDriver(todoList.length, driverOk)" type="text">查看教程</a-button>
+    </div>
+    <div class="justify-between align-center" style="padding: 20px 0">
+      <div class="undo align-center">任务列表</div>
       <a-input-search
         class="head-input"
         :style="{ width: '320px' }"
@@ -75,9 +78,6 @@ onMounted(function () {
         button-text="添加"
         search-button
       />
-    </div>
-    <div class="justify-between align-center" style="padding: 20px 0">
-      <div class="undo align-center">任务列表</div>
     </div>
     <div class="list">
       <div class="justify-between align-center item" v-for="(item, index) in todoList" :key="item.content">
