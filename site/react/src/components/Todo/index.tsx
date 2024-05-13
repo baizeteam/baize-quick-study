@@ -91,7 +91,7 @@ export default function Todo(props: INF_PROPS) {
           查看教程
         </Button>
         <InputSearch
-          searchButton
+          searchButton="添加"
           placeholder="请输入"
           style={{ width: "320px" }}
           onChange={(e) => {
@@ -116,7 +116,6 @@ export default function Todo(props: INF_PROPS) {
           <div className="justify-between align-center item" key={index}>
             <div className="warp">
               <input type="checkbox" className="checkBox checkBoxInput" value={item.content} />
-              {/*{renderContent(item, index)}*/}
               {item.input ? (
                 <input
                   className="content"
