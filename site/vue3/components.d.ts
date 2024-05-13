@@ -15,6 +15,7 @@ declare module 'vue' {
     AMenu: typeof import('@arco-design/web-vue')['Menu']
     AMenuItem: typeof import('@arco-design/web-vue')['MenuItem']
     AModal: typeof import('@arco-design/web-vue')['Modal']
+    CodeDemo: typeof import('./src/components/CodeDemo/index.vue')['default']
     Header: typeof import('./src/components/Todo/Header.vue')['default']
     Item: typeof import('./src/components/Todo/Item.vue')['default']
     Nav: typeof import('./src/components/Nav/index.vue')['default']

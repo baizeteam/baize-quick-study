@@ -4,6 +4,7 @@ import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { ArcoResolver } from "unplugin-vue-components/resolvers";
 import { resolve } from "path";
+import viteRenderCode from "./vitePlugin/viteRenderCode";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -22,6 +23,7 @@ export default defineConfig({
         }),
       ],
     }),
+    viteRenderCode(),
   ],
   css: {
     preprocessorOptions: {
