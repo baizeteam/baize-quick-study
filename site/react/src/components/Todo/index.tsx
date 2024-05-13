@@ -107,6 +107,10 @@ export default function Todo(props: INF_PROPS) {
           searchButton
           placeholder="请输入"
           style={{ width: "320px" }}
+          onChange={(e, event) => {
+            inputVal = e;
+            console.log(e, "sssss", event.target);
+          }}
           onSearch={onAdd}
           className="head-input"
           value={inputVal}
