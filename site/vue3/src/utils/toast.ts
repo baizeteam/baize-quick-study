@@ -8,7 +8,7 @@ interface INotificationOptions extends NotificationConfig {
 export const $Notification = function ({
   title = "提示",
   content,
-  duration = 1000,
+  duration = 3000,
   type = "success",
 }: INotificationOptions) {
   return Notification[type]({

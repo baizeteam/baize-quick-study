@@ -4,7 +4,6 @@
     <div class="list" :style="{ width: mainWidth }">
       <div class="undoList">
         <div class="align-center justify-between">
-          <Title :radius="undoList.length" title="未完成" />
           <a-button type="primary" @click="onfinish" v-show="undoList.length">完成</a-button>
         </div>
         <div class="sortable">
@@ -19,7 +18,6 @@
         </div>
       </div>
       <div class="doneList">
-        <Title :radius="doneList.length" title="已完成" />
         <Item v-for="(item, i) in doneList" :key="item.content" :data="item" @del="delItem(done, i)" />
       </div>
     </div>
@@ -27,12 +25,10 @@
 </template>
 
 <script lang="ts" setup>
-import Sortable from "sortablejs";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
-import { computed, nextTick, onMounted, ref } from "vue";
+import { computed, nextTick, onMounted } from "vue";
 import Header from "@/components/Todo/Header.vue";
-import Title from "@/components/Todo/Title.vue";
 import Item from "@/components/Todo/Item.vue";
 import { undo, done, TYPE_CONTENT, TYPE_UNDO_DONE } from "@/types/todoList.ts";
 import { useDoneStore, useUndoStore } from "@/store/todoList";
@@ -97,12 +93,6 @@ const onfinish = function () {
     if (noChecks) return $Notification({ content: "请先选择未完成项目" });
   });
 };
-const rowDrop = function () {
-  const sortableHtml = document.getElementsByClassName("sortable")[0];
-  new Sortable(<HTMLElement>sortableHtml, {
-    animation: 150,
-  });
-};
 
 const onDriver = function (isTeach?: boolean) {
   const undoContent = "示例：先赚一个小目标";
@@ -140,7 +130,6 @@ const onDriver = function (isTeach?: boolean) {
 
 /** life callback */
 onMounted(function () {
-  rowDrop();
   onDriver();
 });
 </script>

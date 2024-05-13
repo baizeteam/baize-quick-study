@@ -17,7 +17,16 @@
       />
     </div>
     <!--    scope -->
-    <a-button type="text" status="danger" @click="onDel">删除</a-button>
+    <a-popover :popup-visible="popupVisible" position="left" title="提示">
+      <a-button type="text" status="danger" @click="popupVisible=true">删除</a-button>
+      <template #content>
+        <p style="margin: 6px 0">您确定要删除吗？删除后不可恢复</p>
+        <div class="justify-end">
+          <a-button style="margin-right: 6px" type="primary" @click="emit('del')">确定</a-button>
+          <a-button @click="popupVisible = false">取消</a-button>
+        </div>
+      </template>
+    </a-popover>
   </div>
 </template>
 <script lang="ts" setup>
@@ -37,6 +46,7 @@ const props = defineProps({
 
 const emit = defineEmits(["del", "change"]);
 const data = ref(props.data);
+const popupVisible = ref<boolean>(false)
 const isUndo = ref(props.isUndo);
 const contentRef = ref(); // v-if后只有一个，根据业务情况来
 /** method */
@@ -57,13 +67,6 @@ const change = function (e) {
   setTimeout(function () {
     data.value.input = false;
   }, 100);
-};
-const onDel = function () {
-  const result: unknown | null = prompt("您确定要删除吗?该操作不可恢复");
-  if (result !== null) {
-    // 取消就是null, 输入字符串null为'null'
-    emit("del");
-  }
 };
 </script>
 
