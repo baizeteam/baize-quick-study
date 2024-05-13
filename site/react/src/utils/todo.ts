@@ -1,12 +1,14 @@
 import { INF_LIST_ITEM, TYPE_LIST } from "@/types/todoList.ts";
 import { driver } from "driver.js";
 import { Modal } from "@arco-design/web-vue";
+import { $Notification } from "./toast.ts";
 const TODO: "todo" = "todo";
 
-export const addItem = function (list: TYPE_LIST, content: string) {
+export const addItem = function (setList: Function, list: TYPE_LIST, content: string) {
   return new Promise((resolve, reject) => {
     try {
       list.unshift({ content, input: false, finished: false });
+      setList(list);
       localStorage.setItem(TODO, JSON.stringify(list));
       resolve("添加成功");
     } catch (e) {
@@ -16,10 +18,17 @@ export const addItem = function (list: TYPE_LIST, content: string) {
     }
   });
 };
-export const changeItem = function (list: TYPE_LIST, index: number, key: keyof INF_LIST_ITEM, value: string | boolean) {
+export const changeItem = function (
+  setList: Function,
+  list: TYPE_LIST,
+  index: number,
+  key: keyof INF_LIST_ITEM,
+  value: string | boolean,
+) {
   return new Promise((resolve, reject) => {
     try {
       list[index][key] = value;
+      setList(list);
       localStorage.setItem(TODO, JSON.stringify(list));
       resolve("修改成功");
     } catch (e) {
@@ -29,11 +38,12 @@ export const changeItem = function (list: TYPE_LIST, index: number, key: keyof I
     }
   });
 };
-export const delItem = function (list: TYPE_LIST, content: string) {
+export const delItem = function (setList: Function, list: TYPE_LIST, content: string) {
   return new Promise((resolve, reject) => {
     try {
       const index = list.findIndex((item) => item.content === content);
       list.splice(index, 1);
+      setList(list);
       localStorage.setItem(TODO, JSON.stringify(list));
       resolve("删除成功");
     } catch (e) {
@@ -43,13 +53,14 @@ export const delItem = function (list: TYPE_LIST, content: string) {
     }
   });
 };
-export const DelMultiple = function (list: TYPE_LIST, ids: Array<string>) {
+export const DelMultiple = function (setList: Function, list: TYPE_LIST, ids: Array<string>) {
   return new Promise((resolve, reject) => {
     try {
       for (let id of ids) {
         const i = list.findIndex((item) => item.content === id);
         list.splice(i, 1); // 模拟数据库删除
       }
+      setList(list);
       localStorage.setItem(TODO, JSON.stringify(list));
       resolve("批量删除成功");
     } catch (e) {
@@ -61,7 +72,7 @@ export const DelMultiple = function (list: TYPE_LIST, ids: Array<string>) {
 };
 export const getList = function (): TYPE_LIST {
   try {
-    const list: TYPE_LIST = JSON.parse(localStorage.getItem(TODO)) || [];
+    const list: TYPE_LIST = JSON.parse(localStorage.getItem(TODO) as string) || [];
     list.forEach((item: INF_LIST_ITEM) => (item.input = false)); // 防止正在input时，强制刷新页面，需要重置input
     return list;
   } catch (e) {
@@ -69,7 +80,7 @@ export const getList = function (): TYPE_LIST {
   }
 };
 
-export const onDriver = function (hasTodos, okCallback) {
+export const onDriver = function (hasTodos: number, okCallback: Function) {
   const driverObj = driver({
     showProgress: true,
     steps: [

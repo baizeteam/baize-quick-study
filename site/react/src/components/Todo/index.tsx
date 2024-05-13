@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { $Notification } from "../../utils/toast.ts";
 import { onDriver } from "../../utils/todo.ts";
 import { INF_LIST_ITEM, TYPE_LIST } from "../../types/todoList.ts";
@@ -6,7 +6,6 @@ import { Button, Input } from "@arco-design/web-react";
 import { Modal } from "@arco-design/web-vue";
 
 const InputSearch = Input.Search;
-let inputVal: string = "";
 
 interface INF_PROPS {
   list: TYPE_LIST;
@@ -16,10 +15,12 @@ interface INF_PROPS {
   multipleDel: Function;
 }
 export default function Todo(props: INF_PROPS) {
+  const [inputVal, setInputVal] = useState("");
   const { list, change, del, add, multipleDel } = props;
   const todoList = list;
   const onContent = function (index: number) {
     change(index, "input", true);
+    console.log(todoList, "todoo");
     setTimeout(function () {
       // focus
     }, 100);
@@ -46,7 +47,7 @@ export default function Todo(props: INF_PROPS) {
       return $Notification({ content: `"${inputVal}"在列表中已存在，请确认！` });
     }
     add(inputVal);
-    inputVal = ""; // after enter we should clear this value
+    setInputVal(""); // after enter we should clear this value
   };
 
   const onFinish = function (index: number, item: INF_LIST_ITEM) {
@@ -82,21 +83,7 @@ export default function Todo(props: INF_PROPS) {
     add("示例：先赚一个小目标");
   };
 
-  const renderContent = function (item: INF_LIST_ITEM, index: number): JSX.Element {
-    if (item.input) {
-      const keyUp = function (e: any, index: number) {};
-      return (
-        <input
-          className="content"
-          value={item.content}
-          onKeyUp={(e) => keyUp(e, index)}
-          onBlur={(e) => changeContent(e, index)}
-        />
-      );
-    } else {
-      return <span className="content" onClick={() => onContent(index)}></span>;
-    }
-  };
+  const contentEnter = function (e: any, index: number) {};
   return (
     <div className="todosPage">
       <div className="head align-center justify-between">
@@ -107,9 +94,8 @@ export default function Todo(props: INF_PROPS) {
           searchButton
           placeholder="请输入"
           style={{ width: "320px" }}
-          onChange={(e, event) => {
-            inputVal = e;
-            console.log(e, "sssss", event.target);
+          onChange={(e) => {
+            setInputVal(e);
           }}
           onSearch={onAdd}
           className="head-input"
@@ -127,10 +113,22 @@ export default function Todo(props: INF_PROPS) {
       </div>
       <div className="list">
         {todoList.map((item, index) => (
-          <div className="justify-between align-center item">
+          <div className="justify-between align-center item" key={index}>
             <div className="warp">
               <input type="checkbox" className="checkBox checkBoxInput" value={item.content} />
-              {renderContent(item, index)}
+              {/*{renderContent(item, index)}*/}
+              {item.input ? (
+                <input
+                  className="content"
+                  value={item.content}
+                  onKeyUp={(e) => contentEnter(e, index)}
+                  onBlur={(e) => changeContent(e, index)}
+                />
+              ) : (
+                <span className="content" onClick={() => onContent(index)}>
+                  {item.content}
+                </span>
+              )}
             </div>
             <Button
               type="text"
