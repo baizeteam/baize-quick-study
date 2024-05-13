@@ -1,17 +1,17 @@
 <template>
-  <div class="head align-center justify-between">
-    <a-button @click="onDriver" type="text">查看教程</a-button>
-    <a-input-search
-      class="head-input"
-      :style="{ width: '320px' }"
-      v-model="inputVal"
-      @search="onAdd"
-      @enter="onAdd"
-      placeholder="请输入"
-      button-text="添加"
-      search-button
-    />
-  </div>
+  <div class="todosPage">
+    <div class="head align-center justify-between">
+      <a-button @click="onDriver(todoList.length,driverOk)" type="text">查看教程</a-button>
+      <a-input-search
+        class="head-input"
+        :style="{ width: '320px' }"
+        v-model="inputVal"
+        @search="onAdd"
+        placeholder="请输入"
+        button-text="添加"
+        search-button
+      />
+    </div>
     <div class="justify-between align-center" style="padding: 20px 0">
       <div class="undo align-center">
         待办数
@@ -19,37 +19,38 @@
       </div>
       <a-button type="primary" @click="onMultipleDel" v-show="todoList.length">批量删除</a-button>
     </div>
-  <div class="list">
-    <div class="justify-between align-center item" v-for="(item,index) in todoList" :key="item.content">
-      <!--    contents -->
-      <div class="warp">
-        <input type="checkbox" class="checkBox checkBoxInput" :value="item.content" />
-        <span class="content" v-if="!item.input" @click="onContent(index)">{{ item.content }}</span>
-        <input
-          class="content"
-          v-else
-          ref="contentRefs"
-          :value="item.content"
-          @keyup.enter="changeContent($event,index)"
-          @blur="changeContent($event,index)"
-        />
-      </div>
-      <!--    scope -->
-      <a-button type="text" status="primary" class="finish" :class="item.finished ? 'gray' : ''" @click="onFinish(index,item)">
-        {{item.finished ? '已完成' : '完成待办'}}
-      </a-button>
+    <div class="list">
+      <div class="justify-between align-center item" v-for="(item,index) in todoList" :key="item.content">
+        <!--    contents -->
+        <div class="warp">
+          <input type="checkbox" class="checkBox checkBoxInput" :value="item.content" />
+          <span class="content" v-if="!item.input" @click="onContent(index)">{{ item.content }}</span>
+          <input
+            class="content"
+            v-else
+            ref="contentRefs"
+            :value="item.content"
+            @keyup.enter="changeContent($event,index)"
+            @blur="changeContent($event,index)"
+          />
+        </div>
+        <!--    scope -->
+        <a-button type="text" status="primary" class="finish" :class="item.finished ? 'gray' : ''" @click="onFinish(index,item)">
+          {{item.finished ? '已完成' : '完成待办'}}
+        </a-button>
         <a-button type="text" status="danger" @click="onDel(item.content)">删除</a-button>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
 import { computed, nextTick, onMounted, ref } from "vue";
 import { INF_LIST_ITEM, TYPE_LIST } from "@/types/todoList.ts";
 import { $Notification } from "@/utils/toast.ts";
 import { Modal } from "@arco-design/web-vue";
+import { onDriver } from "@/utils/todo.ts";
 
 const props = defineProps({
   list: {
@@ -59,7 +60,6 @@ const props = defineProps({
 });
 /** data */
 const emit = defineEmits(["change", "add", 'del', 'multipleDel']);
-const tipShow = ref<boolean>(false);
 const contentRefs = ref(); // v-if后只有一个，根据业务情况来
 const inputVal = ref("");
 const todoList: TYPE_LIST = computed(() => props.list);
@@ -123,88 +123,16 @@ const onMultipleDel = function () {
   });
 };
 
-const driverObj = driver({
-  showProgress: true,
-  steps: [
-    { element: ".head-input", popover: { title: "第一步", description: "首先输入需要完成的项目" } },
-    {
-      element: '.item',
-      popover: { title: "第二步", description: "该项目会出现在列表里" },
-    },
-    { element: ".finish", popover: { title: "第三步", description: "如果需要完成该项目，点击完成按钮" } },
-    { element: ".list", popover: { title: "第四步", description: "您可以查看所有的待办清单状态" } },
-    { element: ".undo", popover: { title: "第五步", description: "您也可以查看待办的数量" } },
-    { element: ".head-input", popover: { title: "最后", description: "来试一试吧!" } },
-  ],
-});
-const tempContent = "示例：先赚一个小目标";
-const onDriver = function () {
-  const hasTodos = todoList.value.length > 0;
-  if (hasTodos) {
-    driverObj.drive();
-  } else {
-    Modal.confirm({
-      title: '欢迎来到"待办清单"',
-      content: "是否自动填加一个示例？",
-      onOk: () => {
-        emit("add", tempContent);
-        setTimeout(driverObj.drive, 50);
-      },
-      onCancel: ()=>{
-        $Notification({content: '请添加示例!',type: 'warning'})
-      }
-    });
-  }
-};
-
+const driverOk = function(){
+  emit("add", '示例：先赚一个小目标');
+}
 /** life callback */
 onMounted(function () {
   const isUsedKey = 'isUsed'
   const isUsed = localStorage.getItem(isUsedKey);
   if(!isUsed){
     localStorage.setItem(isUsedKey,'true')
-    onDriver()
+    onDriver(todoList.value.length, driverOk)
   }
 });
 </script>
-
-<style lang="less" scoped>
-.undo{
-  font-size: 16px;
-  color: #666;
-  font-weight: 600;
-  span{
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    background: #c9c9c9;
-    color: #ffffff;
-    margin-left: 6px;
-  }
-}
-.list {
-  margin: auto;
-  .item {
-    background: #fff;
-    padding: 5px 0;
-    .warp {
-      flex: 9;
-      .checkBox {
-        display: inline-block;
-        width: 30px;
-        height: 13px;
-      }
-      .content {
-        display: inline-block;
-        width: 80%;
-      }
-    }
-    .gray{
-      color: gray;
-    }
-  }
-  .item + .item {
-    margin-top: 15px;
-  }
-}
-</style>
