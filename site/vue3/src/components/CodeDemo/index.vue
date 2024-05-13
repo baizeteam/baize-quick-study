@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import { defineProps, onMounted } from "vue";
+import "highlight.js/styles/atom-one-dark.css";
+import hljs from "highlight.js";
+import javascript from "highlight.js/lib/languages/javascript";
+hljs.registerLanguage("javascript", javascript);
+
 const { codeData } = defineProps({
   codeData: {
     required: false,
@@ -30,19 +36,23 @@ const unescapeHtml = (str: string) => {
   );
 };
 
+onMounted(() => {
+  let blocks = document.querySelectorAll("pre code");
+  blocks.forEach((block) => {
+    hljs.highlightBlock(block as HTMLElement);
+  });
+});
+
 const renderCode = unescapeHtml(codeData);
 </script>
 
 <template>
   <div class="code-domo">
-    <div>{{ renderCode }}</div>
+    <highlightjs language="js" :code="renderCode" />
   </div>
 </template>
 
 <style scoped lang="less">
 .code-domo {
-  white-space: pre-wrap;
-  background: #000;
-  color: #fff;
 }
 </style>
