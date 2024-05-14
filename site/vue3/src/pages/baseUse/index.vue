@@ -13,7 +13,5 @@ const add = function (content: string) {
 </script>
 <template>
   <Todo :list="todoList" @add="add"  @del="del" />
-  <div>代码辅助：</div>
-  <div>父组件：</div>
   <CodeDemo :codeData="null" />
 </template>

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { $Notification } from "@/utils/toast.ts";
-import { Button, Input } from "@arco-design/web-react";
+import { Button, Input, Image } from "@arco-design/web-react";
 import { Modal } from "@arco-design/web-react";
 import {TYPE_LIST} from "@/utils/todo.ts";
+import noData from '@/assets/images/noData.jpg'
 
 const InputSearch = Input.Search;
 
@@ -11,7 +12,7 @@ interface INF_PROPS {
   add: Function;
   del: Function;
 }
-export default function Todo(props: INF_PROPS) {
+export default function Todo(props: INF_PROPS):React.JSX.Element {
   const [inputVal, setInputVal] = useState("");
   const { list, del, add } = props;
   const todoList = list;
@@ -39,12 +40,18 @@ export default function Todo(props: INF_PROPS) {
           className="head-input"
           value={inputVal}
         />
-        {todoList.map((item) => (
-          <div className="justify-between align-center item" key={item}>
-            <span className="content">{item}</span>
-            <Button type="text" status="danger" onClick={() => onDel(item)}>删除</Button>
-          </div>
-        ))}
+      {
+        todoList.length? (
+            <>
+              {todoList.map((item) => (
+                  <div className="justify-between align-center item" key={item}>
+                    <span className="content">{item}</span>
+                    <Button type="text" status="danger" onClick={() => onDel(item)}>删除</Button>
+                  </div>
+              ))}
+            </>
+        ) : <Image src={noData} style={{marginTop: '10px', display: 'block'}} />
+      }
     </div>
   );
 }

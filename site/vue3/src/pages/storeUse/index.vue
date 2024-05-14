@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import CodeDemo from "@/components/CodeDemo/index.vue";
 import Todo from "@/components/Todo/Index.vue";
 import { computed } from "vue";
 import useTodoStore from "@/store/todoList.ts";
@@ -13,4 +14,5 @@ const add = function (content: string) {
 </script>
 <template>
   <Todo :list="todoList" @add="add" @del="del"  />
+  <CodeDemo :codeData="null" />
 </template>

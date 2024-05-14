@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
 import { $Notification } from "@/utils/toast.ts";
-import { Modal } from "@arco-design/web-vue";
+import { Modal, Image } from "@arco-design/web-vue";
+import noData from '@/assets/images/noData.jpg'
 const props = defineProps({list: Array});
 const emit = defineEmits([ "add", 'del' ]);
 const inputVal = ref("");
@@ -31,9 +32,12 @@ const onDel = function(content:string){
         button-text="添加"
         search-button
     />
-    <div class="justify-between align-center item" v-for="(item,index) in todoList" :key="index">
-      <span class="content">{{ item }}</span>
-      <a-button type="text" status="danger" @click="onDel(item)">删除</a-button>
-    </div>
+    <template v-if="todoList.length">
+      <div class="justify-between align-center item" v-for="(item,index) in todoList" :key="index">
+        <span class="content">{{ item }}</span>
+        <a-button type="text" status="danger" @click="onDel(item)">删除</a-button>
+      </div>
+    </template>
+    <Image style="margin-top: 10px" v-else :src="noData" />
   </div>
 </template>

@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import Todo from "@/components/Todo";
 import { addItem, TYPE_LIST, delItem, getList } from "@/utils/todo.ts";
 
-export default function BaseUse(): JSX.Element {
+export default function BaseUse() :React.JSX.Element {
   const [todoList, setTodoList] = useState<TYPE_LIST>(getList());
 
   const del = function (content: string) {
-    delItem(setTodoList, todoList, content)
+    delItem(todoList, content,setTodoList)
   };
   const add = function (content: string) {
-    addItem(setTodoList, todoList, content)
+    addItem(todoList, content,setTodoList)
   };
   return <Todo list={todoList}  add={add} del={del}  />;
 }

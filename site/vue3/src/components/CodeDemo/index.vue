@@ -48,11 +48,13 @@ const renderCode = unescapeHtml(codeData);
 
 <template>
   <div class="code-domo">
+    <div style="font-weight: 600;">源码</div>
     <highlightjs language="js" :code="renderCode" />
   </div>
 </template>
 
 <style scoped lang="less">
 .code-domo {
+  margin: 30px 0;
 }
 </style>
