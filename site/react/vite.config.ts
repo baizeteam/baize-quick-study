@@ -15,6 +15,7 @@ export default defineConfig({
   server: {
     port: 5601,
   },
+  base:'./',
   plugins: [
     react(),
     viteReactStylename({
