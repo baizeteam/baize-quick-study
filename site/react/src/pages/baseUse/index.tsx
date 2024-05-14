@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Todo from "../../components/Todo";
-import { INF_LIST_ITEM, TYPE_LIST } from "../../types/todoList.ts";
-import { addItem, changeItem, delItem, DelMultiple, getList } from "../../utils/todo.ts";
-import { $Notification } from "../../utils/toast.ts";
+import Todo from "@/components/Todo";
+import { INF_LIST_ITEM, TYPE_LIST } from "@/types/todoList.ts";
+import { addItem, changeItem, delItem, DelMultiple, getList } from "@/utils/todo.ts";
+import { $Notification } from "@/utils/toast.ts";
 
 export default function BaseUse(): JSX.Element {
   const [todoList, setTodoList] = useState<TYPE_LIST>(getList());

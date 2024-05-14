@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { $Notification } from "../../utils/toast.ts";
-import { onDriver } from "../../utils/todo.ts";
-import { INF_LIST_ITEM, TYPE_LIST } from "../../types/todoList.ts";
+import { $Notification } from "@/utils/toast.ts";
+import { onDriver } from "@/utils/todo.ts";
+import { INF_LIST_ITEM, TYPE_LIST } from "@/types/todoList.ts";
 import { Button, Input } from "@arco-design/web-react";
 import { Modal } from "@arco-design/web-vue";
 

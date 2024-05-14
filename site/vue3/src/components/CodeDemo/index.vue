@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, onMounted } from "vue";
+import { onMounted } from "vue";
 import "highlight.js/styles/atom-one-dark.css";
 import hljs from "highlight.js";
 import javascript from "highlight.js/lib/languages/javascript";
