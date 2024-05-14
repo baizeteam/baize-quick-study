@@ -32,7 +32,7 @@ export default function Todo(props: INF_PROPS):React.JSX.Element {
   return (
     <div className="todosPage">
         <InputSearch
-          searchButton
+          searchButton='添加'
           placeholder="请输入"
           style={{ width: "320px" }}
           onChange={(e) => setInputVal(e)}
@@ -43,8 +43,8 @@ export default function Todo(props: INF_PROPS):React.JSX.Element {
       {
         todoList.length? (
             <>
-              {todoList.map((item) => (
-                  <div className="justify-between align-center item" key={item}>
+              {todoList.map((item,index) => (
+                  <div className="justify-between align-center item" key={item + index}>
                     <span className="content">{item}</span>
                     <Button type="text" status="danger" onClick={() => onDel(item)}>删除</Button>
                   </div>
