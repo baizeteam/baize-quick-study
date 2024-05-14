@@ -1,6 +1,6 @@
 import { INF_LIST_ITEM, TYPE_LIST } from "@/types/todoList.ts";
 import { driver } from "driver.js";
-import { Modal } from "@arco-design/web-vue";
+import { Modal } from "@arco-design/web-react";
 import { $Notification } from "./toast.ts";
 const TODO: "todo" = "todo";
 
