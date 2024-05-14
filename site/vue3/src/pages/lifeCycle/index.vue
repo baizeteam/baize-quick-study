@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import CodeDemo from "@/components/CodeDemo";
+import CodeDemo from "@/components/CodeDemo/index.vue";
 </script>
 
 <template>
