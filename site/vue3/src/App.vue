@@ -12,9 +12,27 @@ export default {
 
 <template>
   <a-config-provider :locale="enUS">
-    <Nav />
-    <div :style="{ padding: '24px' }">
-      <router-view />
+    <div class="app-container">
+      <Nav />
+      <div class="content">
+        <router-view />
+      </div>
     </div>
   </a-config-provider>
 </template>
+
+<style scoped lang="less">
+.app-container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+
+  .content {
+    padding: 24px;
+    box-sizing: border-box;
+    flex: 1;
+    overflow: auto;
+  }
+}
+</style>

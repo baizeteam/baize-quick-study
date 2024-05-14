@@ -30,7 +30,7 @@ const unHtmlEntities: { [key: string]: string } = {
 };
 
 const unescapeHtml = (str: string) => {
-  return str.replace(
+  return str?.replace(
     /&amp;|&lt;|&gt;|&#39;|&quot;|&grave;|&circ;|&tilde;|&mdash;|&bull;|&ndash;|&#63;|&#58;|&#36;/g,
     (tag) => unHtmlEntities[tag] || tag,
   );
@@ -55,6 +55,8 @@ const renderCode = unescapeHtml(codeData);
 
 <style scoped lang="less">
 .code-domo {
-  margin: 30px 0;
+  margin-top: 24px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 </style>

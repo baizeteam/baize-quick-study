@@ -18,7 +18,7 @@ const htmlEntities: { [key: string]: string } = {
 };
 
 const escapeHtml = (str: string) => {
-  return str.replace(/[&<>'"`^~—•–?:$]/g, (tag) => htmlEntities[tag] || tag);
+  return str?.replace(/[&<>'"`^~—•–?:$]/g, (tag) => htmlEntities[tag] || tag);
 };
 
 function viteRenderCode(): PluginOption {
@@ -29,8 +29,8 @@ function viteRenderCode(): PluginOption {
       if (!/\.(tsx?|jsx?|less|vue)$/.test(id) || id.includes("node_modules")) {
         return null;
       }
-      const oldCode = escapeHtml(JSON.parse(JSON.stringify(code)));
       if (code.indexOf("<CodeDemo") !== -1) {
+        const oldCode = escapeHtml(JSON.parse(JSON.stringify(code)));
         code = code.replace(/<\/script>/, `const codeData =\`${oldCode}\`` + "\n</script>");
         code = code.replace(/\:codeData\=\"null\"/g, ':codeData="codeData"');
       }
