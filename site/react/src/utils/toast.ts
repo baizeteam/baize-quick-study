@@ -4,9 +4,9 @@ type TYPE_NOTIFICATION = "success" | "warning" | "error";
 
 interface INotificationOptions {
   type?: TYPE_NOTIFICATION;
-  title: string;
+  title?: string;
   content: string;
-  duration: number;
+  duration?: number;
 }
 export const $Notification = function ({
   title = "提示",
