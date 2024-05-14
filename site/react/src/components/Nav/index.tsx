@@ -6,7 +6,7 @@ import "./index.module.less";
 
 const MenuItem = Menu.Item;
 
-export default function Nav() {
+export default function Nav():React.JSX.Element {
   const navigate = useNavigate();
   const [currentRoutes, setCurrentRoutes] = useState<string[]>([]);
 

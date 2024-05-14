@@ -3,10 +3,11 @@ import { computed, ref } from "vue";
 import { $Notification } from "@/utils/toast.ts";
 import { Modal, Image } from "@arco-design/web-vue";
 import noData from '@/assets/images/noData.jpg'
+import {TYPE_LIST} from "@/utils/todo.ts";
 const props = defineProps({list: Array});
 const emit = defineEmits([ "add", 'del' ]);
 const inputVal = ref("");
-const todoList = computed(() => props.list);
+const todoList = computed(() => props.list as TYPE_LIST);
 const onAdd = function () {
   if (!inputVal.value) return $Notification({ content: "请键入内容再回车！",type:'warning' });
   emit("add", inputVal.value);

@@ -6,6 +6,7 @@ microApp.start();
 
 const baseUrl = "http://localhost";
 
+console.log(React.useState instanceof Function,'')
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <div className="app-container">
     <div className="app-item">

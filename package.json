@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "esno start.ts",
+    "dev": "esno dev.ts",
+    "build": "esno build.ts",
     "format": "prettier --write . .prettierrc",
     "lint-staged": "lint-staged"
   },
