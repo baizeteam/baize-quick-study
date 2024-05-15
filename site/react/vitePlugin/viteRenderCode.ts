@@ -70,7 +70,7 @@ function viteRenderCode(): PluginOption {
             sourceType: "module",
             plugins: ["typescript", "jsx"],
           });
-          const currentPath = id.replace(_basePath, "");
+          const currentPath = id; // id.replace(_basePath, "");
           traverse.default(ast, {
             JSXOpeningElement(path) {
               if (path.node.name.name === "CodeDemo") {
@@ -99,7 +99,7 @@ function viteRenderCode(): PluginOption {
                     const fileCode = readFileSync(filePath, "utf-8");
                     fileListCode.push({
                       fileCode: escapeHtml(fileCode),
-                      filePath: filePath.replace(_basePath, ""),
+                      filePath: filePath, // filePath.replace(_basePath, ""),
                     });
                   }
                   const astFileListCode = t.jsxAttribute(

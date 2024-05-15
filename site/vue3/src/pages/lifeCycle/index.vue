@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import CodeDemo from "@/components/CodeDemo/index.vue";
 import { onMounted, onUnmounted } from "vue";
 
 // 生命周期
@@ -13,5 +12,5 @@ onUnmounted(() => {
 
 <template>
   <div>生命周期</div>
-  <CodeDemo :codeData="null" />
+  <code-demo />
 </template>

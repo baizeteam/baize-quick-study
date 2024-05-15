@@ -29,11 +29,15 @@ function viteRenderCode(): PluginOption {
       if (!/\.(tsx?|jsx?|less|vue)$/.test(id) || id.includes("node_modules")) {
         return null;
       }
-      if (code.indexOf("<CodeDemo") !== -1) {
+      if (code.indexOf("<code-demo") !== -1) {
         const oldCode = escapeHtml(JSON.parse(JSON.stringify(code)));
-        code = code.replace(/<\/script>/, `const codeData =\`${oldCode}\`` + "\n</script>");
-        code = code.replace(/\:codeData\=\"null\"/g, ':codeData="codeData"');
+        code = code.replace(
+          /<\/script>/,
+          `const codeData =\`${oldCode}\`; const codePath = \`${id}\`;` + "\n</script>",
+        );
+        code = code.replace("<code-demo", '<code-demo :codeData="codeData" :codePath="codePath"');
       }
+
       return code;
     },
   };
