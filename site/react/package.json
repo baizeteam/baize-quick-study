@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@arco-design/web-react": "^2.62.0",
+    "highlight.js": "^11.9.0",
     "mobx": "^6.12.3",
     "mobx-react": "^9.1.1",
     "mobx-react-lite": "^4.0.7",
@@ -19,6 +20,10 @@
     "react-router-dom": "^6.23.1"
   },
   "devDependencies": {
+    "@babel/generator": "^7.24.5",
+    "@babel/parser": "^7.24.5",
+    "@babel/traverse": "^7.24.5",
+    "@babel/types": "^7.24.5",
     "@types/node": "^20.12.11",
     "@types/react": "^18.2.66",
     "@types/react-css-modules": "^4.6.8",

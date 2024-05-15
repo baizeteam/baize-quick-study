@@ -3,4 +3,4 @@ import App from "./App.tsx";
 import "@arco-design/web-react/dist/css/arco.css";
 import "@/assets/styles/index.less";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(<App />);
+ReactDOM.createRoot(document.getElementById("react-app")!).render(<App />);

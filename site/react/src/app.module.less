@@ -1,0 +1,20 @@
+:global {
+  #react-app {
+    height: calc(~"100vh - 60px");
+    overflow: hidden;
+  }
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+
+  .content {
+    padding: 24px;
+    box-sizing: border-box;
+    flex: 1;
+    overflow: auto;
+  }
+}

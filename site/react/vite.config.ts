@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 import viteReactStylename from "vite-react-stylename";
 import genericNames from "generic-names";
+import viteRenderCode from "./vitePlugin/viteRenderCode";
 
 const generateScopedName = genericNames("[name]__[local]__[hash:base64:4]");
 
@@ -15,7 +16,7 @@ export default defineConfig({
   server: {
     port: 5601,
   },
-  base:'./',
+  base: "./",
   plugins: [
     react(),
     viteReactStylename({
@@ -27,6 +28,7 @@ export default defineConfig({
       },
       alias,
     }),
+    viteRenderCode(),
   ],
   css: {
     modules: {
