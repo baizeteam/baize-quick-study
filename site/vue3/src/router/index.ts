@@ -26,6 +26,10 @@ const routes: Array<RouteRecordRaw> = [
     component: ApiUse,
   },
   {
+    path: "/vue3",
+    redirect: "/",
+  },
+  {
     path: "/:catchAll(.*)",
     component: NotFound,
   },
