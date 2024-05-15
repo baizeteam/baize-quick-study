@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import hljs from "highlight.js";
 // import "highlight.js/styles/dark.css";
 import "highlight.js/styles/atom-one-dark.min.css";
+import "./index.module.less";
 
 const unHtmlEntities: { [key: string]: string } = {
   "&amp;": "&",
@@ -56,15 +57,17 @@ export function CodeDemoItem(props: ICodeDemoProps) {
     }
   }, [codeData]);
   return (
-    <div>
-      <div>{codePath}</div>
-      <pre className="line-numbers">
-        {codeData && (
-          <code ref={codeRef} className="tsx">
-            {decodeEscapedCharacters(codeData)}
-          </code>
-        )}
-      </pre>
+    <div styleName="code-domo">
+      <div styleName="title">{codePath}</div>
+      <div styleName="content">
+        <pre className="line-numbers">
+          {codeData && (
+            <code ref={codeRef} className="tsx">
+              {decodeEscapedCharacters(codeData)}
+            </code>
+          )}
+        </pre>
+      </div>
     </div>
   );
 }
