@@ -16,7 +16,7 @@ export default defineConfig({
   server: {
     port: 5601,
   },
-  base: "./",
+  base: "/react/",
   plugins: [
     react(),
     viteReactStylename({
@@ -39,6 +39,9 @@ export default defineConfig({
     alias,
   },
   build: {
+    outDir: "../../dist/react",
+    assetsDir: "./assets",
+    emptyOutDir: true,
     rollupOptions: {
       output: {
         manualChunks: {

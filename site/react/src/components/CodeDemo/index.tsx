@@ -43,7 +43,7 @@ function decodeEscapedCharacters(code) {
   code = code.replace(/\\n/g, "\n");
   code = code.replace(/\\r/g, "\r");
   // 替换 Unicode 转义字符 \uXXXX 为实际字符
-  code = code.replace(/\\u([a-fA-F0-9]{4})/g, (match, group) => String.fromCharCode(parseInt(group, 16)));
+  code = code.replace(/\\u([a-fA-F0-9]{4})/g, (_, group) => String.fromCharCode(parseInt(group, 16)));
   return unescapeHtml(code);
 }
 

@@ -1,0 +1,31 @@
+import express from "express";
+import { join } from "path";
+
+const app = express();
+
+app.use(express.static(join(__dirname, "dist")));
+
+app.get("/", (req, res) => {
+  // res.end("baize-quick-study");
+  console.log(__dirname);
+  res.sendFile(join(__dirname, "dist", "main", "index.html"));
+});
+
+app.get("/react", (req, res) => {
+  // res.end("baize-quick-study");
+  console.log(__dirname);
+  res.sendFile(join(__dirname, "dist", "react", "index.html"));
+});
+
+app.get("/vue3", (req, res) => {
+  // res.end("baize-quick-study");
+  console.log(__dirname);
+  res.sendFile(join(__dirname, "dist", "vue3", "index.html"));
+});
+
+const port = process.env.PORT || 3000;
+const host = process.env.HOST || "";
+
+app.server = app.listen(port, host, () => {
+  console.log(`server running @ http://${host ? host : "localhost"}:${port}`);
+});
