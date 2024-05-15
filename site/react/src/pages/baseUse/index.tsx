@@ -1,35 +1,15 @@
 import React, { useState } from "react";
 import Todo from "@/components/Todo";
-import { INF_LIST_ITEM, TYPE_LIST } from "@/types/todoList.ts";
-import { addItem, changeItem, delItem, DelMultiple, getList } from "@/utils/todo.ts";
-import { $Notification } from "@/utils/toast.ts";
+import { addItem, TYPE_LIST, delItem, getList } from "@/utils/todo.ts";
 
-export default function BaseUse(): JSX.Element {
+export default function BaseUse() :React.JSX.Element {
   const [todoList, setTodoList] = useState<TYPE_LIST>(getList());
 
   const del = function (content: string) {
-    delItem(setTodoList, todoList, content)
-      .then((r) => $Notification({ content: r as string }))
-      .catch((e: string) => $Notification({ content: e, type: "error" }));
-  };
-  const change = function (index: number, key: keyof INF_LIST_ITEM, value: string | boolean) {
-    changeItem(setTodoList, todoList, index, key, value)
-      .then((r) => {
-        key !== "input" && $Notification({ content: r as string });
-        console.log(key, "key");
-      })
-      .catch((e: string) => $Notification({ content: e, type: "error" }));
+    delItem(todoList, content,setTodoList)
   };
   const add = function (content: string) {
-    addItem(setTodoList, todoList, content)
-      .then((r) => $Notification({ content: r as string }))
-      .catch((e: string) => $Notification({ content: e, type: "error" }));
+    addItem(todoList, content,setTodoList)
   };
-
-  const multipleDel = function (ids: Array<string>) {
-    DelMultiple(setTodoList, todoList, ids)
-      .then((r) => $Notification({ content: r as string }))
-      .catch((e: string) => $Notification({ content: e, type: "error" }));
-  };
-  return <Todo list={todoList} change={change} add={add} del={del} multipleDel={multipleDel} />;
+  return <Todo list={todoList}  add={add} del={del}  />;
 }

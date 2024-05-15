@@ -9,7 +9,7 @@ const ApiUse = lazy(() => import("../pages/apiUse"));
 const NotFound = lazy(() => import("../pages/notFound"));
 
 // 路由配置，react懒加载需要加上Suspense组件
-export default function BaseRouter() {
+export default function BaseRouter():React.JSX.Element {
   return (
     <Suspense fallback={<></>}>
       <Routes>

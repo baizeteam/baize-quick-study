@@ -1,9 +1,12 @@
-import { Notification, NotificationConfig } from "@arco-design/web-vue";
+import { Notification } from "@arco-design/web-react";
 
 type TYPE_NOTIFICATION = "success" | "warning" | "error";
 
-interface INotificationOptions extends NotificationConfig {
+interface INotificationOptions {
   type?: TYPE_NOTIFICATION;
+  title?: string;
+  content: string;
+  duration?: number;
 }
 export const $Notification = function ({
   title = "提示",

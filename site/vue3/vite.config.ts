@@ -11,6 +11,7 @@ export default defineConfig({
   server: {
     port: 5602,
   },
+  base:'./',
   plugins: [
     vue(),
     AutoImport({
