@@ -6,7 +6,7 @@ import "./index.module.less";
 
 const MenuItem = Menu.Item;
 
-export default function Nav():React.JSX.Element {
+export default function Nav(): React.JSX.Element {
   const navigate = useNavigate();
   const [currentRoutes, setCurrentRoutes] = useState<string[]>([]);
 
@@ -20,7 +20,7 @@ export default function Nav():React.JSX.Element {
 
   useEffect(() => {
     setCurrentRoutes([location.pathname]);
-  }, []);
+  }, [location.pathname]);
 
   return (
     <Menu mode="horizontal" selectedKeys={currentRoutes} onClickMenuItem={handleMenuSelect} styleName="app-nav">
