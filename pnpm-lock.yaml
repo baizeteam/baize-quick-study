@@ -39,9 +39,18 @@ importers:
 
   site/main:
     dependencies:
+      '@arco-design/web-react':
+        specifier: ^2.62.0
+        version: 2.62.0(@types/react@18.2.66)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@micro-zoe/micro-app':
         specifier: 1.0.0-rc.5
         version: 1.0.0-rc.5
+      mobx:
+        specifier: ^6.12.3
+        version: 6.12.3
+      mobx-react:
+        specifier: ^9.1.1
+        version: 9.1.1(mobx@6.12.3)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0

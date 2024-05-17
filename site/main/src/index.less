@@ -8,8 +8,17 @@
   overflow: hidden;
   .app-container-header {
     height: 60px;
+    padding: 0 24px;
     background: #333;
     color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .app-container-header-left,
+    .app-container-header-right {
+      display: flex;
+      align-items: center;
+    }
   }
   .app-container-content {
     height: calc(~"100vh - 60px");
@@ -69,17 +78,17 @@ li {
 }
 
 // todos
-.todosPage{
-  margin-bottom:  20px;
-    .item {
-      margin-top: 14px;
-      background: #fff;
-      .warp {
-        flex: 9;
-        .content {
-          display: inline-block;
-          width: 80%;
-        }
+.todosPage {
+  margin-bottom: 20px;
+  .item {
+    margin-top: 14px;
+    background: #fff;
+    .warp {
+      flex: 9;
+      .content {
+        display: inline-block;
+        width: 80%;
       }
     }
+  }
 }
