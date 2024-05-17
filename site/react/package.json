@@ -37,7 +37,7 @@
     "generic-names": "^4.0.0",
     "postcss-less": "^6.0.0",
     "typescript": "^5.2.2",
-    "vite": "^5.2.11",
+    "vite": "5.0.12",
     "vite-react-stylename": "^0.0.2"
   }
 }
