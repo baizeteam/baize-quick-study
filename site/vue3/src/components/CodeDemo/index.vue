@@ -40,13 +40,6 @@ const unescapeHtml = (str: string) => {
   );
 };
 
-onMounted(() => {
-  let blocks = document.querySelectorAll("pre code");
-  blocks.forEach((block) => {
-    hljs.highlightBlock(block as HTMLElement);
-  });
-});
-
 const renderCode = unescapeHtml(codeData);
 </script>
 
