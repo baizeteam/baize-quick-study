@@ -68,6 +68,7 @@ export default function App() {
       <div className="app-container-content">
         {AppList.map((item) => (
           <div className="app-item" key={item.name}>
+            {/* micro-app 有with沙箱和iframe沙箱，vite只能使用iframe沙箱 */}
             <micro-app name={item.name} url={baseUrl + (isDev ? `:${item.port}` : item.path)} iframe />
           </div>
         ))}

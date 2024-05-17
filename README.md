@@ -22,6 +22,16 @@ Vue
 > - pinia
 > - acro-design
 
+微前端
+
+> - micro-app的初始化
+> - micro-app的路由控制
+> - micro-app全局数据处理
+
+vite
+
+> - 自定义插件
+
 ## 开始
 
 必须使用pnpm，因为使用pnpm-workspace来对多个项目进行更加友好的管理。使用npm or yarn那么您将还需要进入到子项目中进行安装。
