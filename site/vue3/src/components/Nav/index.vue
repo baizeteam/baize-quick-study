@@ -3,6 +3,7 @@
 import { reactive, onMounted } from "vue";
 import VueSvg from "@/assets/vue.svg";
 import { useRouter } from "vue-router";
+import { basePath } from "@/router";
 const router = useRouter();
 
 const currentRoutes = reactive({ value: [router.currentRoute.value.path] });
@@ -27,10 +28,10 @@ onMounted(() => {});
     <a-menu-item key="null" disabled>
       <img :src="VueSvg" />
     </a-menu-item>
-    <a-menu-item key="/">基本使用</a-menu-item>
-    <a-menu-item key="/life-cycle">生命周期</a-menu-item>
-    <a-menu-item key="/store-use">状态管理</a-menu-item>
-    <a-menu-item key="/api-use">接口请求</a-menu-item>
+    <a-menu-item :key="basePath + '/base-use'">基本使用</a-menu-item>
+    <a-menu-item :key="basePath + '/life-cycle'">生命周期</a-menu-item>
+    <a-menu-item :key="basePath + '/store-use'">状态管理</a-menu-item>
+    <a-menu-item :key="basePath + '/api-use'">接口请求</a-menu-item>
   </a-menu>
 </template>
 

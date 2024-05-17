@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Menu } from "@arco-design/web-react";
 import ReactSvg from "@/assets/react.svg";
 import { useNavigate } from "react-router-dom";
+import { basePath } from "@/router";
 import "./index.module.less";
 
 const MenuItem = Menu.Item;
@@ -19,7 +20,11 @@ export default function Nav(): React.JSX.Element {
   };
 
   useEffect(() => {
-    setCurrentRoutes([location.pathname]);
+    if (location.pathname === basePath + "/") {
+      navigate("/base-use");
+      setCurrentRoutes(["/base-use"]);
+    }
+    setCurrentRoutes([location.pathname.replace(basePath, "")]);
   }, [location.pathname]);
 
   return (
@@ -27,7 +32,7 @@ export default function Nav(): React.JSX.Element {
       <MenuItem key="null" disabled>
         <img src={ReactSvg} styleName="logo" alt="Vite logo" />
       </MenuItem>
-      <MenuItem key="/">基本使用</MenuItem>
+      <MenuItem key="/base-use">基本使用</MenuItem>
       <MenuItem key="/life-cycle">生命周期</MenuItem>
       <MenuItem key="/store-use">状态管理</MenuItem>
       <MenuItem key="/api-use">接口请求</MenuItem>

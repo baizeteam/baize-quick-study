@@ -10,13 +10,11 @@ const baseUrl = isDev ? "http://localhost" : "http://localhost:3000";
 const AppList = [
   {
     name: "react",
-    port: "5601",
-    path: "/react",
+    path: isDev ? ":5601/react/" : "/react/",
   },
   {
     name: "vue3",
-    port: "5602",
-    path: "/vue3",
+    path: isDev ? ":5602/vue3/" : "/vue3/",
   },
 ];
 
@@ -24,19 +22,22 @@ export default function App() {
   const [routeSyncStatus, setRouteSyncStatus] = useState(true);
   const routerSyncStatusRef = useRef(routeSyncStatus);
 
+  // 初始化微应用
   const initMicroApp = () => {
     window.microApp = microApp;
   };
 
+  // 切换路由同步状态
   const changeRouteSyncStatus = (status) => {
     routerSyncStatusRef.current = status;
     setRouteSyncStatus(status);
   };
 
+  // 路由同步
   const routeSync = (to) => {
     AppList.forEach((item) => {
       if (item.name !== to.name) {
-        microApp.router.push({ name: item.name, path: to.fullPath });
+        microApp.router.push({ name: item.name, path: to.fullPath.replace(to.name, item.name) });
       }
     });
   };
@@ -44,7 +45,6 @@ export default function App() {
     document.body.setAttribute("arco-theme", "dark");
     initMicroApp();
     microApp.router.beforeEach((to, from) => {
-      console.log("路由切换", routerSyncStatusRef.current);
       if (routerSyncStatusRef.current) {
         routeSync(to);
       }
@@ -54,7 +54,6 @@ export default function App() {
     <div className="app-container">
       <div className="app-container-header">
         <div>mirco-app</div>
-
         <div className="app-container-header-right">
           <span style={{ marginRight: "8px" }}>路由联动</span>
           <Switch checked={routeSyncStatus} onChange={changeRouteSyncStatus} />
@@ -69,7 +68,7 @@ export default function App() {
         {AppList.map((item) => (
           <div className="app-item" key={item.name}>
             {/* micro-app 有with沙箱和iframe沙箱，vite只能使用iframe沙箱 */}
-            <micro-app name={item.name} url={baseUrl + (isDev ? `:${item.port}` : item.path)} iframe />
+            <micro-app name={item.name} url={baseUrl + item.path} iframe />
           </div>
         ))}
       </div>
