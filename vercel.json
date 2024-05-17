@@ -15,11 +15,5 @@
       "src": "/(.*)",
       "dest": "/"
     }
-  ],
-  "build": {
-    "env": {
-      "NODE_ENV": "production"
-    },
-    "command": "pnpm run build"
-  }
+  ]
 }
