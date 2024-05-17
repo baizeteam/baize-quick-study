@@ -34,7 +34,6 @@ const unHtmlEntities: { [key: string]: string } = {
 };
 
 const unescapeHtml = (str: string) => {
-  console.log(str);
   return str?.replace(
     /&amp;|&lt;|&gt;|&#39;|&quot;|&grave;|&circ;|&tilde;|&mdash;|&bull;|&ndash;|&#63;|&#58;|&#36;/g,
     (tag) => unHtmlEntities[tag] || tag,
@@ -47,8 +46,6 @@ onMounted(() => {
     hljs.highlightBlock(block as HTMLElement);
   });
 });
-
-console.log(codeData);
 
 const renderCode = unescapeHtml(codeData);
 </script>
