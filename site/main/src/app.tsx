@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import microApp from "@micro-zoe/micro-app";
 import "@arco-design/web-react/dist/css/arco.css";
 import { Button, Switch } from "@arco-design/web-react";
+import { IconGithub } from "@arco-design/web-react/icon";
 
 const isDev = import.meta.env.DEV;
 const baseUrl = isDev ? "http://localhost" : "http://localhost:3000";
@@ -20,7 +21,7 @@ const AppList = [
 ];
 
 export default function App() {
-  const [routeSyncStatus, setRouteSyncStatus] = useState(false);
+  const [routeSyncStatus, setRouteSyncStatus] = useState(true);
   const routerSyncStatusRef = useRef(routeSyncStatus);
 
   const initMicroApp = () => {
@@ -54,10 +55,14 @@ export default function App() {
       <div className="app-container-header">
         <div>mirco-app</div>
 
-        <div className="left">
+        <div className="app-container-header-right">
           <span style={{ marginRight: "8px" }}>路由联动</span>
           <Switch checked={routeSyncStatus} onChange={changeRouteSyncStatus} />
-          <Button type="text">查看教程</Button>
+          {/* <Button type="text">查看教程</Button> */}
+          <IconGithub
+            onClick={() => window.open("https://github.com/baizeteam/baize-quick-study", "_blank")}
+            style={{ fontSize: 24, marginLeft: "16px", cursor: "pointer" }}
+          />
         </div>
       </div>
       <div className="app-container-content">
