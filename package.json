@@ -2,12 +2,12 @@
   "name": "baize-quick-study",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "dev": "esno dev.ts",
     "build": "esno build.ts",
-    "server": "node server.js",
-    "server-dev": "nodemon server.js",
+    "server": "node ./api/index.js",
+    "server-dev": "nodemon ./api/index.js",
     "format": "prettier --write . .prettierrc",
     "lint-staged": "lint-staged"
   },

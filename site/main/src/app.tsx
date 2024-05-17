@@ -5,7 +5,7 @@ import { Button, Switch } from "@arco-design/web-react";
 import { IconGithub } from "@arco-design/web-react/icon";
 
 const isDev = import.meta.env.DEV;
-const baseUrl = isDev ? "http://localhost" : "http://localhost:3000";
+const baseUrl = isDev ? "http://localhost" : "";
 
 const AppList = [
   {
