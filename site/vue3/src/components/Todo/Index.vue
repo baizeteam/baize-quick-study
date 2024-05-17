@@ -24,15 +24,17 @@ const onDel = function (content: string) {
 
 <template>
   <div class="todosPage">
-    <a-input-search
-      class="head-input"
-      :style="{ width: '320px' }"
-      v-model="inputVal"
-      @search="onAdd"
-      placeholder="请输入"
-      button-text="添加"
-      search-button
-    />
+    <div>
+      <a-input-search
+        class="head-input"
+        :style="{ width: '320px' }"
+        v-model="inputVal"
+        @search="onAdd"
+        placeholder="请输入"
+        button-text="添加"
+        search-button
+      />
+    </div>
     <template v-if="todoList.length">
       <div class="justify-between align-center item" v-for="(item, index) in todoList" :key="index">
         <span class="content">{{ item }}</span>
