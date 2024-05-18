@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import "highlight.js/styles/atom-one-dark.min.css";
-import hljs from "highlight.js";
-import javascript from "highlight.js/lib/languages/javascript";
-hljs.registerLanguage("javascript", javascript);
+import hljs from "highlight.js/lib/core";
+import hlTypescript from "highlight.js/lib/languages/typescript";
+hljs.registerLanguage("typescript", hlTypescript);
 
 const { codeData } = defineProps({
   codeData: {

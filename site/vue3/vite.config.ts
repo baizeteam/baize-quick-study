@@ -3,7 +3,7 @@ import vue from "@vitejs/plugin-vue";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { ArcoResolver } from "unplugin-vue-components/resolvers";
-import { join, resolve } from "path";
+import { resolve } from "path";
 import viteRenderCode from "./vitePlugin/viteRenderCode";
 
 // https://vitejs.dev/config/
@@ -43,6 +43,7 @@ export default defineConfig({
   build: {
     outDir: "../../dist/vue3",
     assetsDir: "./assets",
+    emptyOutDir: true,
     rollupOptions: {
       output: {
         manualChunks: {
