@@ -7,10 +7,6 @@ import viteRenderCode from "./vitePlugin/viteRenderCode";
 
 const generateScopedName = genericNames("[name]__[local]__[hash:base64:4]");
 
-const alias = {
-  "@": resolve(__dirname, "src"),
-};
-
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
@@ -26,7 +22,6 @@ export default defineConfig({
           syntax: "postcss-less",
         },
       },
-      alias,
     }),
     viteRenderCode(),
   ],
@@ -43,7 +38,9 @@ export default defineConfig({
     },
   },
   resolve: {
-    alias,
+    alias: {
+      "@": resolve(__dirname, "src"),
+    },
   },
   build: {
     outDir: "../../dist/react",
