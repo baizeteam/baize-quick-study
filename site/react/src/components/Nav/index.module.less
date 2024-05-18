@@ -1,5 +1,21 @@
 .app-nav {
   border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
   .logo {
+    width: 32px;
+    height: 40px;
+    box-sizing: border-box;
+    margin-left: 24px;
+    cursor: pointer;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  :global {
+    .arco-react-menu {
+      flex: 1;
+    }
   }
 }

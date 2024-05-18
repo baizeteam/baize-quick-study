@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Menu } from "@arco-design/web-react";
+import { Menu, Popover } from "@arco-design/web-react";
 import ReactSvg from "@/assets/react.svg";
 import { useNavigate } from "react-router-dom";
 import { basePath } from "@/router";
@@ -19,6 +19,12 @@ export default function Nav(): React.JSX.Element {
     setCurrentRoutes([key]);
   };
 
+  // 打开子应用
+  const openApp = () => {
+    const urlPath = import.meta.env.DEV ? location.protocol + "//localhost:5601/react/" : "/react/";
+    window.open(urlPath, "_blank");
+  };
+
   useEffect(() => {
     if (location.pathname === basePath + "/") {
       navigate("/base-use");
@@ -28,14 +34,18 @@ export default function Nav(): React.JSX.Element {
   }, [location.pathname]);
 
   return (
-    <Menu mode="horizontal" selectedKeys={currentRoutes} onClickMenuItem={handleMenuSelect} styleName="app-nav">
-      <MenuItem key="null" disabled>
-        <img src={ReactSvg} styleName="logo" alt="Vite logo" />
-      </MenuItem>
-      <MenuItem key="/base-use">基本使用</MenuItem>
-      <MenuItem key="/life-cycle">生命周期</MenuItem>
-      <MenuItem key="/store-use">状态管理</MenuItem>
-      <MenuItem key="/api-use">接口请求</MenuItem>
-    </Menu>
+    <div styleName="app-nav">
+      <Popover title="点击打开React子应用" trigger="hover" position="rt">
+        <div styleName="logo" onClick={openApp}>
+          <img src={ReactSvg} alt="react" />
+        </div>
+      </Popover>
+      <Menu mode="horizontal" selectedKeys={currentRoutes} onClickMenuItem={handleMenuSelect}>
+        <MenuItem key="/base-use">基本使用</MenuItem>
+        <MenuItem key="/life-cycle">生命周期</MenuItem>
+        <MenuItem key="/store-use">状态管理</MenuItem>
+        <MenuItem key="/api-use">接口请求</MenuItem>
+      </Menu>
+    </div>
   );
 }

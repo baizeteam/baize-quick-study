@@ -31,6 +31,13 @@ export default defineConfig({
     viteRenderCode(),
   ],
   css: {
+    preprocessorOptions: {
+      less: {
+        modifyVars: {
+          prefix: "arco-react",
+        },
+      },
+    },
     modules: {
       generateScopedName: generateScopedName,
     },

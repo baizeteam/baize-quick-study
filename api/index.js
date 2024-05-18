@@ -1,4 +1,4 @@
-// 由于vercel部署的原因，好像无法放置在跟路由下，暂时放在api文件夹下
+// 由于vercel部署的原因，好像无法放置在跟目录下，暂时放在api文件夹下
 
 const express = require("express");
 const { join } = require("path");

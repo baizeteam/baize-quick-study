@@ -1,18 +1,11 @@
-<script lang="ts">
+<script lang="ts" setup>
 import enUS from "@arco-design/web-vue/es/locale/lang/en-us";
-export default {
-  name: "App",
-  data() {
-    return {
-      enUS,
-    };
-  },
-};
+const isMicroApp = window.__MICRO_APP_ENVIRONMENT__;
 </script>
 
 <template>
   <a-config-provider :locale="enUS">
-    <div class="app-container">
+    <div class="app-container" :style="{ height: isMicroApp ? 'calc(100vh - 60px)' : '100vh' }">
       <Nav />
       <div class="content">
         <router-view />
