@@ -2,6 +2,22 @@
   padding: 0;
   margin: 0;
 }
+::-webkit-scrollbar {
+  width: 8px; /* 滚动条的宽度 */
+  height: 8px; /* 滚动条的高度 */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0); /* 滚动条轨道的背景色（半透明） */
+  border: 4px solid rgba(0, 0, 0, 0); /* 滚动条轨道的边框（半透明） */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0); /* 滚动条滑块的背景色（半透明） */
+  border: 4px solid rgba(#999, 0.5); /* 滚动条滑块的边框（半透明） */
+  border-radius: 3px; /* 滚动条滑块的圆角 */
+}
+
 .app-container {
   width: 100%;
   height: 100vh;
