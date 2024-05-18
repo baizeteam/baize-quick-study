@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import microApp from "@micro-zoe/micro-app";
-import "@arco-design/web-react/dist/css/index.less";
 import { ConfigProvider, Switch } from "@arco-design/web-react";
 import { IconGithub } from "@arco-design/web-react/icon";
 
