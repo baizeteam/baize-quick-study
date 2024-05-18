@@ -36,7 +36,7 @@ onMounted(() => {});
         <img :src="VueSvg" />
       </div>
       <template #content>
-        <span>打开vue3子应用</span>
+        <span>点击打开vue3子应用</span>
       </template>
     </a-popover>
 

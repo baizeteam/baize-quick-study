@@ -62,7 +62,7 @@ export function CodeDemoItem(props: ICodeDemoProps) {
       <div styleName="content">
         <pre className="line-numbers">
           {codeData && (
-            <code ref={codeRef} className="tsx">
+            <code ref={codeRef} className="ts">
               {decodeEscapedCharacters(codeData)}
             </code>
           )}
