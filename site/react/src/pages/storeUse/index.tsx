@@ -1,6 +1,6 @@
 import React from "react";
 import Todo from "@/components/Todo";
-import { observer } from "mobx-react-lite";
+import { observer } from "mobx-react";
 import todoStore from "@/store/todoList.ts";
 import CodeDemo from "@/components/CodeDemo";
 

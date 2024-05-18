@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import hljs from "highlight.js";
+import hljs from "highlight.js/lib/core";
 // import "highlight.js/styles/dark.css";
+import hlTypescript from "highlight.js/lib/languages/typescript";
 import "highlight.js/styles/atom-one-dark.min.css";
 import "./index.module.less";
 
@@ -53,6 +54,7 @@ export function CodeDemoItem(props: ICodeDemoProps) {
 
   useEffect(() => {
     if (codeRef.current && codeData) {
+      hljs.registerLanguage("typescript", hlTypescript);
       hljs.highlightElement(codeRef.current);
     }
   }, [codeData]);
@@ -62,7 +64,7 @@ export function CodeDemoItem(props: ICodeDemoProps) {
       <div styleName="content">
         <pre className="line-numbers">
           {codeData && (
-            <code ref={codeRef} className="ts">
+            <code ref={codeRef} className="tsx">
               {decodeEscapedCharacters(codeData)}
             </code>
           )}

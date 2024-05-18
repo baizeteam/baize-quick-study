@@ -4,6 +4,7 @@ import { resolve } from "path";
 import viteReactStylename from "vite-react-stylename";
 import genericNames from "generic-names";
 import viteRenderCode from "./vitePlugin/viteRenderCode";
+import { vitePluginForArco } from "@arco-plugins/vite-react";
 
 const generateScopedName = genericNames("[name]__[local]__[hash:base64:4]");
 
@@ -23,16 +24,15 @@ export default defineConfig({
         },
       },
     }),
+    vitePluginForArco({
+      modifyVars: {
+        prefix: "arco-react",
+        style: "less",
+      },
+    }),
     viteRenderCode(),
   ],
   css: {
-    preprocessorOptions: {
-      less: {
-        modifyVars: {
-          prefix: "arco-react",
-        },
-      },
-    },
     modules: {
       generateScopedName: generateScopedName,
     },
@@ -52,6 +52,7 @@ export default defineConfig({
           reactBase: ["react", "react-dom", "react-router-dom"],
           mobx: ["mobx", "mobx-react"],
           arco: ["@arco-design/web-react"],
+          highlight: ["highlight.js"],
         },
       },
     },
