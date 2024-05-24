@@ -16,8 +16,8 @@ const externals = {
   "react-router": "react-router",
   "react-router-dom": "ReactRouterDOM",
   // lodash: "_",
-  axios: "axios",
-  //dayjs: "dayjs",
+  // axios: "axios",
+  // dayjs: "dayjs",
   // antd: "antd",
 };
 

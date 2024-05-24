@@ -88,12 +88,18 @@ importers:
       generic-names:
         specifier: ^4.0.0
         version: 4.0.0
+      rollup-plugin-external-globals:
+        specifier: ^0.10.0
+        version: 0.10.0(rollup@4.17.2)
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
       vite:
         specifier: 5.0.12
         version: 5.0.12(@types/node@20.12.11)(less@4.2.0)
+      vite-add-cdn-script:
+        specifier: ^0.0.5
+        version: 0.0.5
       vite-react-stylename:
         specifier: ^1.0.0
         version: 1.0.0
