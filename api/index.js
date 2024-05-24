@@ -7,16 +7,16 @@ const app = express();
 
 app.use(express.static(join(__dirname, "..", "dist")));
 
-app.get("/", (req, res) => {
-  res.sendFile(join(__dirname, "..", "dist", "main", "index.html"));
-});
-
-app.get("/react", (req, res) => {
+app.get("/react*", (req, res) => {
   res.sendFile(join(__dirname, "..", "dist", "react", "index.html"));
 });
 
-app.get("/vue3", (req, res) => {
+app.get("/vue3*", (req, res) => {
   res.sendFile(join(__dirname, "..", "dist", "vue3", "index.html"));
+});
+
+app.get("/*", (req, res) => {
+  res.sendFile(join(__dirname, "..", "dist", "main", "index.html"));
 });
 
 const port = process.env.PORT || 3000;
