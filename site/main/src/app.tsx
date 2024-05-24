@@ -1,6 +1,9 @@
+/** @jsxRuntime classic */
+/** @jsx jsxCustomEvent */
+import jsxCustomEvent from "@micro-zoe/micro-app/polyfill/jsx-custom-event";
 import React, { useEffect, useState, useRef } from "react";
 import microApp from "@micro-zoe/micro-app";
-import { ConfigProvider, Switch } from "@arco-design/web-react";
+import { ConfigProvider, Switch, Spin } from "@arco-design/web-react";
 import { IconGithub } from "@arco-design/web-react/icon";
 
 const isDev = import.meta.env.DEV;
@@ -20,6 +23,17 @@ const AppList = [
 export default function App() {
   const [routeSyncStatus, setRouteSyncStatus] = useState(true);
   const routerSyncStatusRef = useRef(routeSyncStatus);
+  const [loadingObj, setLoadingObj] = useState({
+    react: true,
+    vue3: true,
+  });
+
+  const loadingRef = useRef(loadingObj);
+
+  const changeLoadingStatus = (name, status) => {
+    loadingRef.current[name] = status;
+    setLoadingObj({ ...loadingRef.current });
+  };
 
   // 初始化微应用
   const initMicroApp = () => {
@@ -66,10 +80,22 @@ export default function App() {
         </div>
         <div className="app-container-content">
           {AppList.map((item) => (
-            <div className="app-item" key={item.name}>
-              {/* micro-app 有with沙箱和iframe沙箱，vite只能使用iframe沙箱 */}
-              <micro-app name={item.name} url={baseUrl + item.path} iframe />
-            </div>
+            <Spin key={item.name} size={36} loading={loadingObj[item.name]} tip="加载中...">
+              <div className="app-item" key={item.name}>
+                {/* micro-app 有with沙箱和iframe沙箱，vite只能使用iframe沙箱 */}
+                <micro-app
+                  onCreated={() => {
+                    changeLoadingStatus(item.name, true);
+                  }}
+                  onMounted={() => {
+                    changeLoadingStatus(item.name, false);
+                  }}
+                  name={item.name}
+                  url={baseUrl + item.path}
+                  iframe
+                />
+              </div>
+            </Spin>
           ))}
         </div>
       </div>
