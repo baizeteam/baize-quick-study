@@ -5,7 +5,6 @@ import mainUserStore from "@/store/mainUserStore";
 import "./index.module.less";
 
 function UserInfo() {
-  console.log("mainUserStore", mainUserStore);
   return (
     <div styleName="user-info">
       <Tooltip

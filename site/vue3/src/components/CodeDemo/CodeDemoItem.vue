@@ -15,8 +15,6 @@ const { codeData, codePath } = defineProps({
   },
 });
 
-console.log("渲染代码------》", codePath, codeData);
-
 const unHtmlEntities: { [key: string]: string } = {
   "&amp;": "&",
   "&lt;": "<",
@@ -35,7 +33,6 @@ const unHtmlEntities: { [key: string]: string } = {
 };
 
 const unescapeHtml = (str: string) => {
-  console.log(str);
   return str?.replace(
     /&amp;|&lt;|&gt;|&#39;|&quot;|&grave;|&circ;|&tilde;|&mdash;|&bull;|&ndash;|&#63;|&#58;|&#36;/g,
     (tag) => unHtmlEntities[tag] || tag,

@@ -19,8 +19,6 @@ const { codeData, fileCode, fileList } = defineProps({
     type: [],
   },
 });
-
-console.log(fileCode, fileList);
 </script>
 
 <template>
