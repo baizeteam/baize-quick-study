@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "esno dev.ts",
-    "build": "esno build.ts",
-    "server": "node ./api/index.js",
-    "server-dev": "nodemon ./api/index.js",
+    "dev": "cross-env START_ENV=dev esno start.ts",
+    "build": "cross-env START_ENV=build esno start.ts",
+    "server": "nodemon ./api/index.js",
     "format": "prettier --write . .prettierrc",
     "lint-staged": "lint-staged"
   },
@@ -17,6 +16,7 @@
   "devDependencies": {
     "@types/node": "^20.12.11",
     "chalk": "^5.3.0",
+    "cross-env": "^7.0.3",
     "lint-staged": "^15.2.2",
     "nodemon": "^3.1.0",
     "prettier": "^3.1.1"
