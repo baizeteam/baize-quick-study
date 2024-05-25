@@ -31,6 +31,9 @@ export default defineConfig({
     port: 5600,
   },
   css: {
+    modules: {
+      generateScopedName: generateScopedName,
+    },
     preprocessorOptions: {
       less: {
         modifyVars: {

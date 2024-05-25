@@ -5,9 +5,9 @@ import React, { useEffect, useState, useRef } from "react";
 import microApp from "@micro-zoe/micro-app";
 import { ConfigProvider, Spin } from "@arco-design/web-react";
 import { IconGithub } from "@arco-design/web-react/icon";
-import { observer } from "mobx-react";
 import mainUserStore from "@/store/mainUserStore";
 import RouterLinkage, { AppList } from "@/components/RouterLinkage";
+import UserInfo from "./components/UserInfo";
 import microAppLogo from "@/assets/micro-app-logo.png";
 
 const isDev = import.meta.env.DEV;
@@ -37,7 +37,7 @@ export default function App() {
     microApp.addGlobalDataListener(({ origin, data }) => {
       if (origin !== "main") {
         console.log("主应用收到数据更新", origin, data);
-        mainUserStore.initData(data);
+        mainUserStore.initData(data.user);
       }
     });
   };
@@ -56,6 +56,7 @@ export default function App() {
           </div>
           <div className="app-container-header-right">
             <RouterLinkage />
+            <UserInfo />
             {/* <Button type="text">查看教程</Button> */}
             <IconGithub
               onClick={() => window.open("https://github.com/baizeteam/baize-quick-study", "_blank")}
