@@ -1,21 +1,25 @@
 import React from "react";
-import Todo from "@/components/Todo";
 import { observer } from "mobx-react";
-import todoStore from "@/store/todoList.ts";
+import { Input } from "@arco-design/web-react";
 import CodeDemo from "@/components/CodeDemo";
+import userStore from "@/store/userStore";
 
 const StoreUse = function (): React.JSX.Element {
-  const todoList = todoStore.todos;
-  const add = function (content: string) {
-    todoStore.createItem(content);
-  };
-  const del = function (content: string) {
-    todoStore.removeItem(content);
-  };
   return (
     <>
-      <Todo list={todoList} add={add} del={del} />
-      <CodeDemo fileList={["@/components/Todo/index.tsx"]} />
+      <Input
+        addBefore="名字"
+        style={{ width: 200, marginBottom: 12, display: "block" }}
+        value={userStore.user.name}
+        onChange={(e) => userStore.updateUserInfo("name", e)}
+      />
+      <Input
+        addBefore="年龄"
+        style={{ width: 200, marginBottom: 12, display: "block" }}
+        value={userStore.user.age}
+        onChange={(e) => userStore.updateUserInfo("age", e)}
+      />
+      <CodeDemo fileList={["@/store/userStore.ts"]} />
     </>
   );
 };
