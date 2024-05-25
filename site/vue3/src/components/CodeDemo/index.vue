@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import "highlight.js/styles/atom-one-dark.min.css";
-import hljs from "highlight.js/lib/core";
-import hlTypescript from "highlight.js/lib/languages/typescript";
-hljs.registerLanguage("typescript", hlTypescript);
+import CodeDemoItem from "./CodeDemoItem.vue";
 
-const { codeData } = defineProps({
+const { codeData, fileCode, fileList } = defineProps({
   codeData: {
     required: false,
     type: String,
@@ -13,40 +10,24 @@ const { codeData } = defineProps({
     required: false,
     type: String,
   },
+  fileList: {
+    required: false,
+    type: [],
+  },
+  fileCode: {
+    required: false,
+    type: [],
+  },
 });
 
-const unHtmlEntities: { [key: string]: string } = {
-  "&amp;": "&",
-  "&lt;": "<",
-  "&gt;": ">",
-  "&#39;": "'",
-  "&quot;": '"',
-  "&grave;": "`",
-  "&#94;": "^",
-  "&#126;": "~",
-  "&mdash;": "—",
-  "&bull;": "•",
-  "&ndash;": "–",
-  "&#63;": "?",
-  "&#58;": ":",
-  "&#36;": "$",
-};
-
-const unescapeHtml = (str: string) => {
-  return str?.replace(
-    /&amp;|&lt;|&gt;|&#39;|&quot;|&grave;|&circ;|&tilde;|&mdash;|&bull;|&ndash;|&#63;|&#58;|&#36;/g,
-    (tag) => unHtmlEntities[tag] || tag,
-  );
-};
-
-const renderCode = unescapeHtml(codeData);
+console.log(fileCode, fileList);
 </script>
 
 <template>
-  <div class="code-domo">
-    <div class="title">{{ codePath }}</div>
-    <div class="content">
-      <highlightjs language="tsx" :code="renderCode" />
+  <div>
+    <CodeDemoItem :codeData="codeData" :codePath="codePath" />
+    <div v-for="(item, index) in fileCode" :key="index">
+      <CodeDemoItem :codeData="item.fileCode" :codePath="item.filePath" />
     </div>
   </div>
 </template>

@@ -22,5 +22,5 @@ const userStore = useUserStore();
       <template #prefix>年龄</template>
     </a-input-number>
   </div>
-  <code-demo />
+  <code-demo :fileList="['@/store/user.ts']" />
 </template>

@@ -78,10 +78,10 @@ export default function CodeDemo(props: ICodeDemoProps) {
   const { codeData, codePath, fileListCode } = props;
   return (
     <>
+      <CodeDemoItem codeData={codeData} codePath={codePath} />
       {fileListCode?.map((item) => (
         <CodeDemoItem key={item.filePath} codeData={item.fileCode} codePath={item.filePath} />
       ))}
-      <CodeDemoItem codeData={codeData} codePath={codePath} />
     </>
   );
 }

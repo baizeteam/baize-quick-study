@@ -9,7 +9,7 @@ const emit = defineEmits(["add", "del"]);
 const inputVal = ref("");
 const todoList = computed(() => props.list as TYPE_LIST);
 const onAdd = function () {
-  if (!inputVal.value) return $Notification({ content: "请键入内容再回车！", type: "warning" });
+  if (!inputVal.value) return $Notification({ content: "请输入内容！", type: "warning" });
   emit("add", inputVal.value);
   inputVal.value = ""; // after enter we should clear this value
 };
@@ -43,5 +43,4 @@ const onDel = function (content: string) {
     </template>
     <Image style="margin-top: 10px" v-else :src="noData" />
   </div>
-  <code-demo />
 </template>

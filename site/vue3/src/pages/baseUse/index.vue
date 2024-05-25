@@ -12,5 +12,5 @@ const add = function (content: string) {
 </script>
 <template>
   <Todo :list="todoList" @add="add" @del="del" />
-  <code-demo />
+  <code-demo :fileList="['@/components/Todo/Index.vue']" />
 </template>
