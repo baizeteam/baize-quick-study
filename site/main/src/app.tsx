@@ -36,7 +36,7 @@ export default function App() {
     mainUserStore.initData(userData);
     microApp.addGlobalDataListener(({ origin, data }) => {
       if (origin !== "main") {
-        console.log("主应用收到数据", origin, data);
+        console.log("主应用收到数据更新", origin, data);
         mainUserStore.initData(data);
       }
     });

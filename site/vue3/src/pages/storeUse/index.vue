@@ -10,17 +10,17 @@ const userStore = useUserStore();
       v-model="userStore.user.name"
       @input="(value) => userStore.updateUserInfo('name', value)"
     >
-      <template #prepend>名字</template>
+      <template #prefix>名字</template>
     </a-input>
   </div>
   <div>
-    <a-input
+    <a-input-number
       style="margin-bottom: 12px; width: 200px"
       v-model="userStore.user.age"
-      @input="(value) => userStore.updateUserInfo('age', value)"
+      @change="(value) => userStore.updateUserInfo('age', value)"
     >
-      <template #prepend>年龄</template>
-    </a-input>
+      <template #prefix>年龄</template>
+    </a-input-number>
   </div>
   <code-demo />
 </template>
