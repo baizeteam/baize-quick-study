@@ -10,12 +10,14 @@ class MainUserStore {
     makeAutoObservable(this);
   }
 
+  // 数据初始化
   initData(userInfo) {
     runInAction(() => {
-      this.user = userInfo;
+      this.user = { ...userInfo };
     });
   }
 
+  // 更新用户信息
   updateUserInfo(key, value) {
     runInAction(() => {
       this.user[key] = value;

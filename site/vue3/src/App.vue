@@ -1,10 +1,28 @@
 <script lang="ts" setup>
-import enUS from "@arco-design/web-vue/es/locale/lang/en-us";
+import { onMounted } from "vue";
+import useUserStore from "@/store/user";
+const userStore = useUserStore();
+
 const isMicroApp = window.__MICRO_APP_ENVIRONMENT__;
+
+const handleMicroAppGlobalData = ({ origin, data }) => {
+  if (origin !== "vue3") {
+    userStore.initData(data.user);
+  }
+};
+
+onMounted(() => {
+  if (isMicroApp) {
+    // 微前端环境下，stroe数据初始化，并监听主应用数据变化
+    const initData = window.microApp.getData();
+    userStore.initData(initData.user);
+    window.microApp.addGlobalDataListener(handleMicroAppGlobalData);
+  }
+});
 </script>
 
 <template>
-  <a-config-provider :locale="enUS">
+  <a-config-provider>
     <div class="app-container" :style="{ height: isMicroApp ? 'calc(100vh - 60px)' : '100vh' }">
       <Nav />
       <div class="content">

@@ -1,18 +1,26 @@
 <script lang="ts" setup>
-import CodeDemo from "@/components/CodeDemo/index.vue";
-import Todo from "@/components/Todo/Index.vue";
-import { computed } from "vue";
-import useTodoStore from "@/store/todoList.ts";
-const todoStore = useTodoStore();
-const todoList = computed(() => todoStore.getTodos);
-const del = function (content: string) {
-  todoStore.removeItem(content);
-};
-const add = function (content: string) {
-  todoStore.createItem(content);
-};
+import useUserStore from "@/store/user.ts";
+const userStore = useUserStore();
 </script>
+
 <template>
-  <Todo :list="todoList" @add="add" @del="del" />
+  <div>
+    <a-input
+      style="margin-bottom: 12px; width: 200px"
+      v-model="userStore.user.name"
+      @input="(value) => userStore.updateUserInfo('name', value)"
+    >
+      <template #prepend>名字</template>
+    </a-input>
+  </div>
+  <div>
+    <a-input
+      style="margin-bottom: 12px; width: 200px"
+      v-model="userStore.user.age"
+      @input="(value) => userStore.updateUserInfo('age', value)"
+    >
+      <template #prepend>年龄</template>
+    </a-input>
+  </div>
   <code-demo />
 </template>

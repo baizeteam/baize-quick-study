@@ -30,8 +30,8 @@ export default function App() {
   const initMicroApp = () => {
     window.microApp = microApp;
     const userData = {
-      name: "baize",
-      age: 25,
+      name: "baize-team",
+      age: 18,
     };
     mainUserStore.initData(userData);
     microApp.addGlobalDataListener(({ origin, data }) => {

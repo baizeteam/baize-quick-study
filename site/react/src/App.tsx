@@ -11,25 +11,22 @@ function App(): React.JSX.Element {
 
   const handleMicroAppGlobalData = ({ origin, data }) => {
     if (origin !== "react") {
-      console.log("react 应用", origin, data);
       userStore.initData(data.user);
     }
   };
 
   useEffect(() => {
     if (isMicroApp) {
+      // 微前端环境下，stroe数据初始化，并监听主应用数据变化
       const initData = window.microApp.getData();
       userStore.initData(initData.user);
-      // 微前端环境下，监听主应用数据变化
       window.microApp.addGlobalDataListener(handleMicroAppGlobalData);
     }
 
     return () => {
       if (isMicroApp) {
-        // 移除微前端环境下，监听主应用数据变化
-        window.microApp.removeGlobalDataListener(handleMicroAppGlobalData);
         // 清空当前子应用绑定的所有全局数据监听函数
-        // window.microApp.clearGlobalDataListener();
+        window.microApp.clearGlobalDataListener();
       }
     };
   }, []);
