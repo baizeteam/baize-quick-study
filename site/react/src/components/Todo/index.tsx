@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { $Notification } from "@/utils/toast.ts";
-import { Button, Input, Image } from "@arco-design/web-react";
-import { Modal } from "@arco-design/web-react";
+import { Button, Input, Modal, Empty } from "@arco-design/web-react";
 import { TYPE_LIST } from "@/utils/todo.ts";
-import noData from "@/assets/images/noData.jpg";
 
 const InputSearch = Input.Search;
 
@@ -52,7 +50,7 @@ export default function Todo(props: INF_PROPS): React.JSX.Element {
           ))}
         </>
       ) : (
-        <Image src={noData} style={{ marginTop: "10px", display: "block" }} />
+        <Empty style={{ marginTop: "48px" }} />
       )}
     </div>
   );

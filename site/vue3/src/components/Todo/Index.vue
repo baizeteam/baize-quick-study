@@ -41,6 +41,6 @@ const onDel = function (content: string) {
         <a-button type="text" status="danger" @click="onDel(item)">删除</a-button>
       </div>
     </template>
-    <Image style="margin-top: 10px" v-else :src="noData" />
+    <a-empty style="margin-top: 48px" v-else />
   </div>
 </template>
