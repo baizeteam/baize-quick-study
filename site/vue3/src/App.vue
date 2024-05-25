@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted } from "vue";
+import { onMounted, onUnmounted } from "vue";
 import useUserStore from "@/store/user";
 const userStore = useUserStore();
 
@@ -17,6 +17,13 @@ onMounted(() => {
     const initData = window.microApp.getData();
     userStore.initData(initData.user);
     window.microApp.addGlobalDataListener(handleMicroAppGlobalData);
+  }
+});
+
+onUnmounted(() => {
+  if (isMicroApp) {
+    // 清空当前子应用绑定的所有全局数据监听函数
+    window.microApp.clearGlobalDataListener();
   }
 });
 </script>
