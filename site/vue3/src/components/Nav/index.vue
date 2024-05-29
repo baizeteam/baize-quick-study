@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // 一般来说，一个vue组件只需要单独一个vue文件即可，不需要外层再包一个目录，这里为了和react的机构保持一致，将vue组件放在一个目录下。
-import { reactive, onMounted, ref } from "vue";
+import { reactive, onMounted } from "vue";
 import VueSvg from "@/assets/vue.svg";
 import { useRouter } from "vue-router";
 import { basePath } from "@/router";
@@ -31,14 +31,18 @@ onMounted(() => {});
 
 <template>
   <div class="app-nav">
-    <a-popover position="rt" trigger="hover">
-      <div class="logo" @click="openApp">
+<!--    <a-popover position="rt" trigger="hover">-->
+<!--      <div class="logo" @click="openApp">-->
+<!--        <img :src="VueSvg" />-->
+<!--      </div>-->
+<!--      <template #content>-->
+<!--        <span>点击打开vue3子应用</span>-->
+<!--      </template>-->
+<!--    </a-popover>-->
+
+      <div class="logo" title="点击打开vue3子应用" @click="openApp">
         <img :src="VueSvg" />
       </div>
-      <template #content>
-        <span>点击打开vue3子应用</span>
-      </template>
-    </a-popover>
 
     <a-menu mode="horizontal" :selected-keys="currentRoutes.value" @menu-item-click="handleMenuSelect">
       <a-menu-item :key="basePath + '/base-use'">基本使用</a-menu-item>

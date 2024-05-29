@@ -1,4 +1,4 @@
-import {$Notification} from "@/utils/toast.ts";
+import { $Notification } from "@/utils/toast.ts";
 export const TODO: "todo" = "todo";
 export type TYPE_LIST = Array<string>
 

@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
 import { $Notification } from "@/utils/toast.ts";
-import { Modal, Image } from "@arco-design/web-vue";
-import noData from "@/assets/images/noData.jpg";
+import { Modal } from "@arco-design/web-vue";
 import { TYPE_LIST } from "@/utils/todo.ts";
 const props = defineProps({ list: Array });
 const emit = defineEmits(["add", "del"]);
