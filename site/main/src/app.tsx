@@ -3,12 +3,13 @@
 import jsxCustomEvent from "@micro-zoe/micro-app/polyfill/jsx-custom-event";
 import React, { useEffect, useState, useRef } from "react";
 import microApp from "@micro-zoe/micro-app";
-import { ConfigProvider, Spin } from "@arco-design/web-react";
+import { ConfigProvider, Popconfirm, Spin } from "@arco-design/web-react";
 import { IconGithub } from "@arco-design/web-react/icon";
 import mainUserStore from "@/store/mainUserStore";
 import RouterLinkage, { AppList } from "@/components/RouterLinkage";
 import UserInfo from "./components/UserInfo";
 import microAppLogo from "@/assets/micro-app-logo.png";
+import DriverStore from "@/store/DriverStore.ts";
 
 const isDev = import.meta.env.DEV;
 const baseUrl = isDev ? "http://localhost" : "";
@@ -49,21 +50,30 @@ export default function App() {
   return (
     <ConfigProvider prefixCls="arco-react">
       <div className="app-container">
-        <div className="app-container-header">
-          <div className="app-container-header-left">
-            <img src={microAppLogo} />
-            <span>mirco-app</span>
+          <div className="app-container-header">
+            <Popconfirm  title="选择react或者vue?"
+                        okText="react"
+                        icon={null}
+                        trigger="hover"
+                        defaultPopupVisible
+                        cancelText="vue"
+                        onOk={function(){new DriverStore("react")}}
+                        onCancel={function(){new DriverStore("vue")}}>
+            <a className="app-container-header-left" href="https://github.com/baizeteam/baize-quick-study">
+              <img src={microAppLogo} />
+              <span>白泽开源</span>
+            </a>
+            </Popconfirm>
+            <div className="app-container-header-right">
+              <RouterLinkage />
+              <UserInfo />
+              {/* <Button type="text">查看教程</Button> */}
+              <IconGithub
+                onClick={() => window.open("https://github.com/baizeteam/baize-quick-study", "_blank")}
+                style={{ fontSize: 24, marginLeft: "16px", cursor: "pointer" }}
+              />
+            </div>
           </div>
-          <div className="app-container-header-right">
-            <RouterLinkage />
-            <UserInfo />
-            {/* <Button type="text">查看教程</Button> */}
-            <IconGithub
-              onClick={() => window.open("https://github.com/baizeteam/baize-quick-study", "_blank")}
-              style={{ fontSize: 24, marginLeft: "16px", cursor: "pointer" }}
-            />
-          </div>
-        </div>
         <div className="app-container-content">
           {AppList.map((item) => (
             <Spin key={item.name} size={36} loading={loadingObj[item.name]} tip="加载中...">

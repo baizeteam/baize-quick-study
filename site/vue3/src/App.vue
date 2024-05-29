@@ -32,7 +32,7 @@ onUnmounted(() => {
   <a-config-provider>
     <div class="app-container" :style="{ height: isMicroApp ? 'calc(100vh - 60px)' : '100vh' }">
       <Nav />
-      <div class="content">
+      <div class="app-content">
         <router-view />
       </div>
     </div>
@@ -46,7 +46,7 @@ onUnmounted(() => {
   overflow: hidden;
   height: 100%;
 
-  .content {
+  .app-content {
     padding: 24px;
     box-sizing: border-box;
     flex: 1;

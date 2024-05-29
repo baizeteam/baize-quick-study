@@ -1,33 +1,47 @@
 import {driver} from "driver.js";
+import 'driver.js/dist/driver.css';
 
-const driverObj = driver({
-    showProgress: true,
-    steps: [
-        { element: ".head-input", popover: { title: "第一步", description: "首先输入需要完成的项目" } },
-        {
-            element: ".item",
-            popover: { title: "第二步", description: "该项目会出现在列表里" },
-        },
-        { element: ".finish", popover: { title: "第三步", description: "如果需要完成该项目，点击完成按钮" } },
-        { element: ".list", popover: { title: "第四步", description: "您可以查看所有的待办清单状态" } },
-        { element: ".undo", popover: { title: "第五步", description: "您也可以查看待办的数量" } },
-        { element: ".head-input", popover: { title: "最后", description: "来试一试吧!" } },
-    ],
-});
-
-driverObj.drive();
+export type TYPE_FLAG = 'vue' | 'react'
 class Device {
     constructor() {
+    }
+    apiUse(){
+
+    }
+    baseUse( type:TYPE_FLAG){
+        const container = document.getElementById(type + '-app')!
+        const element = function(classname){
+            const dom = container.querySelector(classname)
+            // console.log(dom,'dom');
+            return dom
+        }
+        const driverObj = driver({
+            showProgress: true,
+            steps: [
+                {popover:  { title: "第一步", description: "首先输入需要完成的项目" } , element: element('.head-input') },
+                {popover:  { title: "第一步", description: "点击添加该项目" } , element: type === "react" ? element('.head-input .arco-react-input-search-btn') : element('.head-input .arco-input-append') },
+                {popover:  { title: "第一步", description: "该项目会出现在列表里，你也可以进行删除操作" } , element: element('.list') },
+                {popover:  { title: "第一步", description: "赶快来试一试吧!" } , element: element('.head-input') }
+            ]
+        });
+
+        driverObj.drive();
+    }
+    lifeCycle(){
+
+    }
+    storeUse(){
+
     }
 }
 
 class DriverStore{
-    behavior: 'vue' | 'react'
     route: any
-    constructor() {
+    constructor(type: TYPE_FLAG) {
         const device = new Device()
-        this.behavior = 'vue'
         this.route = '' // tab栏
-        console.log(this.behavior, this.route)
+        device.baseUse(type) // 先写死, 之后变成第一次更换tab栏时也有对应的引导
     }
 }
+
+export default DriverStore

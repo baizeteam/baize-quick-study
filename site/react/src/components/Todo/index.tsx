@@ -38,20 +38,22 @@ export default function Todo(props: INF_PROPS): React.JSX.Element {
         className="head-input"
         value={inputVal}
       />
-      {todoList.length ? (
-        <>
-          {todoList.map((item, index) => (
-            <div className="justify-between align-center item" key={item + index}>
-              <span className="content">{item}</span>
-              <Button type="text" status="danger" onClick={() => onDel(item)}>
-                删除
-              </Button>
-            </div>
-          ))}
-        </>
-      ) : (
-        <Empty style={{ marginTop: "48px" }} />
-      )}
+      <div className="list">
+        {todoList.length ? (
+          <>
+            {todoList.map((item, index) => (
+              <div className="justify-between align-center item" key={item + index}>
+                <span className="content">{item}</span>
+                <Button type="text" status="danger" onClick={() => onDel(item)}>
+                  删除
+                </Button>
+              </div>
+            ))}
+          </>
+        ) : (
+          <Empty style={{ marginTop: "48px" }} />
+        )}
+      </div>
     </div>
   );
 }

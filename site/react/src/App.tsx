@@ -36,7 +36,7 @@ function App(): React.JSX.Element {
         <BrowserRouter basename={basePath}>
           <div styleName="app-container" style={{ height: isMicroApp ? "calc(100vh - 60px)" : "100vh" }}>
             <Nav />
-            <div styleName="content">
+            <div styleName="app-content">
               <BaseRouter />
             </div>
           </div>
