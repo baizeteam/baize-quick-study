@@ -12,11 +12,11 @@ const { codeData, fileCode } = defineProps({
   },
   fileList: {
     required: false,
-    type: Array,
+    type: [],
   },
   fileCode: {
     required: false,
-    type: Array,
+    type: [],
   },
 });
 </script>
