@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import CodeDemoItem from "./CodeDemoItem.vue";
 
-const { codeData, fileCode, fileList } = defineProps({
+const { codeData, fileCode } = defineProps({
   codeData: {
     required: false,
     type: String,
@@ -12,11 +12,11 @@ const { codeData, fileCode, fileList } = defineProps({
   },
   fileList: {
     required: false,
-    type: [],
+    type: Array,
   },
   fileCode: {
     required: false,
-    type: [],
+    type: Array,
   },
 });
 </script>

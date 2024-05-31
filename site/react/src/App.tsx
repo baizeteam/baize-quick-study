@@ -17,7 +17,7 @@ function App(): React.JSX.Element {
 
   useEffect(() => {
     if (isMicroApp) {
-      // 微前端环境下，stroe数据初始化，并监听主应用数据变化
+      // 微前端环境下，store 数据初始化，并监听主应用数据变化
       const initData = window.microApp.getData();
       userStore.initData(initData.user);
       window.microApp.addGlobalDataListener(handleMicroAppGlobalData);
@@ -36,7 +36,7 @@ function App(): React.JSX.Element {
         <BrowserRouter basename={basePath}>
           <div styleName="app-container" style={{ height: isMicroApp ? "calc(100vh - 60px)" : "100vh" }}>
             <Nav />
-            <div styleName="content">
+            <div styleName="app-content">
               <BaseRouter />
             </div>
           </div>

@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import viteReactStylename from "vite-react-stylename";
+import viteReactStyleName from "vite-react-stylename";
 import genericNames from "generic-names";
 import { vitePluginForArco } from "@arco-plugins/vite-react";
 import { resolve } from "path";
@@ -11,7 +11,7 @@ const generateScopedName = genericNames("[name]__[local]__[hash:base64:4]");
 export default defineConfig({
   plugins: [
     react(),
-    viteReactStylename({
+    viteReactStyleName({
       generateScopedName,
       filetypes: {
         ".less": {

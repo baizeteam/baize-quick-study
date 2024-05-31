@@ -13,7 +13,7 @@ const handleMicroAppGlobalData = ({ origin, data }) => {
 
 onMounted(() => {
   if (isMicroApp) {
-    // 微前端环境下，stroe数据初始化，并监听主应用数据变化
+    // 微前端环境下，store 数据初始化，并监听主应用数据变化
     const initData = window.microApp.getData();
     userStore.initData(initData.user);
     window.microApp.addGlobalDataListener(handleMicroAppGlobalData);
@@ -32,7 +32,7 @@ onUnmounted(() => {
   <a-config-provider>
     <div class="app-container" :style="{ height: isMicroApp ? 'calc(100vh - 60px)' : '100vh' }">
       <Nav />
-      <div class="content">
+      <div class="app-content">
         <router-view />
       </div>
     </div>
@@ -46,7 +46,7 @@ onUnmounted(() => {
   overflow: hidden;
   height: 100%;
 
-  .content {
+  .app-content {
     padding: 24px;
     box-sizing: border-box;
     flex: 1;
