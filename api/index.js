@@ -12,11 +12,11 @@ app.get("/main*", (req, res) => {
 });
 
 app.get("/react*", (req, res) => {
-  res.sendFile(join(__dirname, "..", "dist", "react", "index.html"));
+  res.sendFile(join(__dirname, "..", "dist", "react"));
 });
 
 app.get("/vue3*", (req, res) => {
-  res.sendFile(join(__dirname, "..", "dist", "vue3", "index.html"));
+  res.sendFile(join(__dirname, "..", "dist", "vue3"));
 });
 
 app.get("/*", (req, res) => {
