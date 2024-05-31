@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import {addItem, delItem, getList, TODO, TYPE_LIST} from "@/utils/todo.ts";
+import { addItem, delItem, getList, TODO, TYPE_LIST } from "@/utils/todo.ts";
 
 const useTodoStore = defineStore(TODO, {
   state: function () {
