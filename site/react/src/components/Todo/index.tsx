@@ -36,9 +36,10 @@ export default function Todo(props: INF_PROPS): React.JSX.Element {
         onChange={(e) => setInputVal(e)}
         onSearch={onAdd}
         className="head-input"
+        id="baseUseTodoInput"
         value={inputVal}
       />
-      <div className="list">
+      <div id="todoList" className="list">
         {todoList.length ? (
           <>
             {todoList.map((item, index) => (

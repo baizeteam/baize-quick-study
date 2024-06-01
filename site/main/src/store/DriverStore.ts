@@ -15,7 +15,10 @@ class Device {
     const driverObj = driver({
       showProgress: true,
       steps: [
-        { popover: { title: "第一步", description: "首先输入需要完成的项目" }, element: element(".head-input") },
+        {
+          popover: { title: "第一步", description: "首先输入需要完成的项目" },
+          element: element("#baseUseTodoInput"),
+        },
         {
           popover: { title: "第一步", description: "点击添加该项目" },
           element:
@@ -25,7 +28,7 @@ class Device {
         },
         {
           popover: { title: "第一步", description: "该项目会出现在列表里，你也可以进行删除操作" },
-          element: element(".list"),
+          element: element("#todoList"),
         },
         { popover: { title: "第一步", description: "赶快来试一试吧!" }, element: element(".head-input") },
       ],

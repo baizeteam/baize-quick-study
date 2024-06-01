@@ -25,6 +25,7 @@ const onDel = function (content: string) {
   <div class="todosPage">
     <div>
       <a-input-search
+        id="baseUseTodoInput"
         class="head-input"
         :style="{ width: '320px' }"
         v-model="inputVal"
@@ -34,7 +35,7 @@ const onDel = function (content: string) {
         search-button
       />
     </div>
-    <div class="list">
+    <div id="todoList" class="list">
       <template v-if="todoList.length">
         <div class="justify-between align-center item" v-for="(item, index) in todoList" :key="index">
           <span class="content">{{ item }}</span>
