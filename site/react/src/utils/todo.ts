@@ -1,5 +1,5 @@
 import { $Notification } from "@/utils/toast.ts";
-export const TODO: "todo" = "todo";
+export const TODO: string = "reactTodo";
 export type TYPE_LIST = Array<string>;
 
 export const addItem = function (list: TYPE_LIST, content: string, set?: Function) {
