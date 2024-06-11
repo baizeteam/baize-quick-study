@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import hljs from "highlight.js/lib/core";
 // import "highlight.js/styles/dark.css";
-import hlTypescript from "highlight.js/lib/languages/typescript";
+import tsLanguage from "highlight.js/lib/languages/typescript";
+import xmlLanguage from "highlight.js/lib/languages/xml";
 import "highlight.js/styles/atom-one-dark.min.css";
 import "./index.module.less";
 
@@ -54,7 +55,8 @@ export function CodeDemoItem(props: ICodeDemoProps) {
 
   useEffect(() => {
     if (codeRef.current && codeData) {
-      hljs.registerLanguage("typescript", hlTypescript);
+      hljs.registerLanguage("typescript", tsLanguage);
+      hljs.registerLanguage("xml", xmlLanguage);
       hljs.highlightElement(codeRef.current);
     }
   }, [codeData]);
