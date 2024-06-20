@@ -6,6 +6,7 @@ import microApp from "@micro-zoe/micro-app";
 import { ConfigProvider, Popconfirm, Spin } from "@arco-design/web-react";
 import { IconGithub } from "@arco-design/web-react/icon";
 import mainUserStore from "@/store/mainUserStore";
+import mainProjectInfoStore from "@/store/mainProjectInfoStore";
 import RouterLinkage, { AppList } from "@/components/RouterLinkage";
 import UserInfo from "./components/UserInfo";
 import microAppLogo from "@/assets/micro-app-logo.png";
@@ -39,6 +40,7 @@ export default function App() {
       if (origin !== "main") {
         console.log("主应用收到数据更新", origin, data);
         mainUserStore.initData(data.user);
+        mainProjectInfoStore.initData(data.projectInfo)
       }
     });
   };

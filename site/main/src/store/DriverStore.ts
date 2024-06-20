@@ -16,18 +16,18 @@ class Device {
       showProgress: true,
       steps: [
         {
-          popover: { title: "第一步", description: "首先输入需要完成的项目" },
+          popover: { title: "第一步", description: "首先在输入框填入数据" },
           element: element("#baseUseTodoInput"),
         },
         {
-          popover: { title: "第一步", description: "点击添加该项目" },
+          popover: { title: "第一步", description: "点击添加这条数据" },
           element:
             type === "react"
               ? element(".head-input .arco-react-input-search-btn")
               : element(".head-input .arco-input-append"),
         },
         {
-          popover: { title: "第一步", description: "该项目会出现在列表里，你也可以进行删除操作" },
+          popover: { title: "第一步", description: "这条数据会出现在列表中，你也可以进行删除操作" },
           element: element("#todoList"),
         },
         { popover: { title: "第一步", description: "赶快来试一试吧!" }, element: element(".head-input") },

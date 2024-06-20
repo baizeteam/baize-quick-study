@@ -5,6 +5,7 @@ import Components from "unplugin-vue-components/vite";
 import { ArcoResolver } from "unplugin-vue-components/resolvers";
 import { resolve } from "path";
 import viteRenderCode from "./vitePlugin/viteRenderCode";
+import { viteMockServe } from 'vite-plugin-mock';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -25,6 +26,9 @@ export default defineConfig({
       ],
     }),
     viteRenderCode(),
+    viteMockServe({
+      mockPath: './src/mock'
+    })
   ],
   css: {
     preprocessorOptions: {

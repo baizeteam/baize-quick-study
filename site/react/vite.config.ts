@@ -5,6 +5,7 @@ import viteReactStyleName from "vite-react-stylename";
 import genericNames from "generic-names";
 import viteRenderCode from "./vitePlugin/viteRenderCode";
 import { vitePluginForArco } from "@arco-plugins/vite-react";
+import { viteMockServe } from 'vite-plugin-mock'
 
 const generateScopedName = genericNames("[name]__[local]__[hash:base64:4]");
 
@@ -31,6 +32,9 @@ export default defineConfig({
       },
     }),
     viteRenderCode(),
+    viteMockServe({
+      mockPath: './src/mock'
+    })
   ],
   css: {
     modules: {
