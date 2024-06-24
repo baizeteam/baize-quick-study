@@ -1,13 +1,17 @@
 <script lang="ts" setup>
 import { onMounted, onUnmounted } from "vue";
 import useUserStore from "@/store/user";
+import useProjectInfoStore from "./store/projectInfo";
 const userStore = useUserStore();
+const projectInfoStore = useProjectInfoStore()
 
 const isMicroApp = window.__MICRO_APP_ENVIRONMENT__;
 
 const handleMicroAppGlobalData = ({ origin, data }) => {
   if (origin !== "vue3") {
     userStore.initData(data.user);
+    projectInfoStore.initData(data.projectInfo)
+    console.log("vue3收到数据更新", origin, data);
   }
 };
 
@@ -16,6 +20,7 @@ onMounted(() => {
     // 微前端环境下，store 数据初始化，并监听主应用数据变化
     const initData = window.microApp.getData();
     userStore.initData(initData.user);
+    projectInfoStore.initData(initData.projectInfo)
     window.microApp.addGlobalDataListener(handleMicroAppGlobalData);
   }
 });

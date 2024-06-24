@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import BaseRouter, { basePath } from "./router";
 import { ConfigProvider } from "@arco-design/web-react";
 import userStore from "./store/userStore";
+import projectInfoStore from "./store/projectInfo";
 import "./app.module.less";
 
 function App(): React.JSX.Element {
@@ -12,6 +13,8 @@ function App(): React.JSX.Element {
   const handleMicroAppGlobalData = ({ origin, data }) => {
     if (origin !== "react") {
       userStore.initData(data.user);
+      projectInfoStore.initData(data.projectInfo)
+      console.log("React收到数据更新", origin, data);
     }
   };
 
@@ -20,6 +23,7 @@ function App(): React.JSX.Element {
       // 微前端环境下，store 数据初始化，并监听主应用数据变化
       const initData = window.microApp.getData();
       userStore.initData(initData.user);
+      projectInfoStore.initData(initData.projectInfo)
       window.microApp.addGlobalDataListener(handleMicroAppGlobalData);
     }
 
