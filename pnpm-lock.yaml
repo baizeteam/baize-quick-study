@@ -104,8 +104,8 @@ importers:
         specifier: 5.0.12
         version: 5.0.12(@types/node@20.12.11)(less@4.2.0)
       vite-add-cdn-script:
-        specifier: ^0.0.5
-        version: 0.0.5
+        specifier: ^0.0.9
+        version: 0.0.9
       vite-react-stylename:
         specifier: ^1.0.0
         version: 1.0.0
@@ -195,8 +195,8 @@ importers:
         specifier: 5.0.12
         version: 5.0.12(@types/node@20.12.11)(less@4.2.0)
       vite-add-cdn-script:
-        specifier: ^0.0.5
-        version: 0.0.5
+        specifier: ^0.0.9
+        version: 0.0.9
       vite-react-stylename:
         specifier: ^1.0.1
         version: 1.0.1
@@ -2640,8 +2640,8 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
-  vite-add-cdn-script@0.0.5:
-    resolution: {integrity: sha512-1jIWqLb2oyNKZrf9rgSZoPEem0Gga2FZcLqTDTfctOeRB/q+DjLFL9m0lOkylDe2ipZzRw4+QhCcwPrFDq8rAw==}
+  vite-add-cdn-script@0.0.9:
+    resolution: {integrity: sha512-2FdA4fEo/dpLtWUsMGDQqMJNqUYey1HcR4txavHYv7a2olKzlrKCwevGcBOepo+MN+CJJ+FuCInctwn4fep/Cg==}
 
   vite-react-stylename@1.0.0:
     resolution: {integrity: sha512-QpSoZsuKm5LWZo9kO8DOBDVVeRiFcqV9WGCi9ptd6T6QDUvG4LsAB29y2PBczdT5PXLG3yOSrfFYaXQBHXZtpA==}
@@ -5178,7 +5178,7 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vite-add-cdn-script@0.0.5: {}
+  vite-add-cdn-script@0.0.9: {}
 
   vite-react-stylename@1.0.0:
     dependencies:

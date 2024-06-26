@@ -39,7 +39,7 @@
     "rollup-plugin-external-globals": "^0.10.0",
     "typescript": "^5.2.2",
     "vite": "5.0.12",
-    "vite-add-cdn-script": "^0.0.5",
+    "vite-add-cdn-script": "^0.0.9",
     "vite-react-stylename": "^1.0.1"
   }
 }
