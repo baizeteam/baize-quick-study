@@ -19,6 +19,32 @@ app.get("/vue3*", (req, res) => {
   res.sendFile(join(__dirname, "..", "dist", "vue3"));
 });
 
+app.get("/apiReact/*", (req, res)=>{
+  res.json({
+    code: 200,
+    message: "请求成功！",
+    data: {
+      name: "baize-team",
+      type: "来自React中模拟的数据",
+      projectName: "baize-quick-study",
+      desc: "为各位有React或者Vue基础的同学，快速学习未掌握的React或者Vue框架",
+    },
+  })
+})
+
+app.get("/apiVue/*", (req, res)=>{
+  res.json({
+    code: 200,
+    message: "请求成功！",
+    data: {
+      name: "baize-team",
+      type: "来自Vue中模拟的数据",
+      projectName: "baize-quick-study",
+      desc: "为各位有React或者Vue基础的同学，快速学习未掌握的React或者Vue框架",
+    },
+  })
+})
+
 app.get("/*", (req, res) => {
   res.sendFile(join(__dirname, "..", "dist", "main", "index.html"));
 });
