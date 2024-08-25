@@ -14,7 +14,7 @@ export default defineConfig({
   },
   base: "/vue3/",
   plugins: [
-    vue(),
+    viteRenderCode(vue),
     AutoImport({
       resolvers: [ArcoResolver()],
     }),
@@ -25,7 +25,6 @@ export default defineConfig({
         }),
       ],
     }),
-    viteRenderCode(),
     viteMockServe({
       mockPath: './src/mock'
     })
